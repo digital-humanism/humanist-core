@@ -18,7 +18,7 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 *Implements Principle 7.1 (Semantic Checkpoints).*
 - **CognitiveLoadAnalyzer**: Biometrics of consciousness. Calculates the minimum time required for a biological human to analyze text.
 - **AgencyGuardV2**: Detector for M2M loops and anomalous cognitive velocity.
-- **DigitalBlockAnalyzer**: Structural entropy detector (Stub).
+- **DigitalBlockAnalyzer**: Structural entropy detector (embedding-based).
 - **Status:** ✅ Cognitive load logic implemented. ✅ Embedding-based vector analyzer implemented.
 
 ### 3. `integrations/langchain_guard.py` (Immune System)
