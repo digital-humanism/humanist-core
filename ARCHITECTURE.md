@@ -10,17 +10,17 @@ This is not a collection of separate tools. It is an integrated architecture whe
 
 ### 1. SafeHarbor (Cryptographic Intent Ledger)
 
-**Purpose:** Immutable logging of human intent with zero-knowledge privacy guarantees.
+**Purpose:** Append-only, tamper-evident logging of human intent with privacy-preserving digests.
 
 **Key Design Decisions:**
 
-- **Hash-chain structure** (not traditional database) for tamper-proof history
+- **Hash-chain structure** (not traditional database) for tamper-evident history
   - Each record contains SHA-256 hash of previous record
   - Retroactive modification breaks the chain
   - Provides cryptographic proof of sequence
 
 - **SHA-256 of prompts only** (not raw text storage)
-  - Protects user privacy (zero-knowledge principle)
+  - Protects user privacy (only digests are stored, not raw text)
   - Allows verification of intent without exposing content
   - Enables legal safe harbor without surveillance
 
@@ -30,6 +30,11 @@ This is not a collection of separate tools. It is an integrated architecture whe
 
 **Why not SQLite or traditional logging:**
 Hash-chain provides cryptographic proof of sequence without trusting a centralized database. In adversarial scenarios, append-only hash-chain is more defensible than mutable logs.
+
+**Known limitations (v0.1, stated honestly):**
+- A local hash-chain provides tamper-evidence, not immutability: the   journal can still be deleted, truncated, or rewritten entirely.
+- SHA-256(prompt) is a digest, not a zero-knowledge proof; predictable prompts can theoretically be brute-forced by hash comparison.
+- Strong provenance (non-repudiation) requires digital signatures, key ownership, and external timestamp anchoring — see Future Work and Architecture v2.0, Section 15 (Cryptographic Provenance).
 
 **Implementation:** `humanist_core/safe_harbor.py` - `SafeHarborLedger` class
 
@@ -168,7 +173,7 @@ Every action must be traceable to a specific human decision.
 
 **Implementation:**
 - SafeHarbor ledger provides cryptographic proof of intent
-- Zero-knowledge hashing protects privacy while enabling verification
+- Digest-based logging protects privacy while enabling verification
 - Append-only structure ensures tamper evidence
 
 **Why this matters:**
