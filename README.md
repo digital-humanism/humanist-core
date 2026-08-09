@@ -1,5 +1,8 @@
 # humanist-core SDK
-**Version:** 0.1.0-alpha  
+
+![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
+
+**Version:** 0.1.0-alpha
 **License:** AGPLv3  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
