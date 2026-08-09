@@ -2,14 +2,14 @@
 
 ![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
 
-**Version:** 0.1.0-alpha
+**Version:** 0.2.0-alpha
 **License:** AGPLv3  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
 ## Project Goal
 Implementation of "Digital Humanism" protocols into LLM frameworks to protect human agency. The SDK prevents autonomous Machine-to-Machine (M2M) loops, protects against cognitive manipulation, and restores the human right to final semantic decision-making.
 
-## Architecture (Status: v0.1.0-alpha)
+## Architecture (Status: v0.2.0-alpha)
 
 ## Independent Reviews
 - [Digital Humanism as a Commercial Circuit-Breaker and ROI Driver](docs/REVIEW_en.md) — independent AI agent review with a reproducible experiment protocol.
