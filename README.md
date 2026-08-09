@@ -1,12 +1,12 @@
-# 🏛 humanist-core SDK
+# humanist-core SDK
 **Version:** 0.1.0-alpha  
 **License:** AGPLv3  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
-## 🎯 Project Goal
+## Project Goal
 Implementation of "Digital Humanism" protocols into LLM frameworks to protect human agency. The SDK prevents autonomous Machine-to-Machine (M2M) loops, protects against cognitive manipulation, and restores the human right to final semantic decision-making.
 
-## 📦 Architecture (Status: v0.1.0-alpha)
+## Architecture (Status: v0.1.0-alpha)
 
 ### 1. `safe_harbor.py` (Cryptographic Safe Harbor)
 *Implements Principles 3 and 4 of the Manifesto.*
@@ -25,6 +25,6 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 - **AgencyGuardCallback**: Integration into LangChain via Callbacks. Monitors autonomous agent hops.
 - **Status:** ✅ Conceptual integration implemented.
 
-## 🚀 Quick Start
+## Quick Start
 ```bash
 pip install -r requirements.txt
