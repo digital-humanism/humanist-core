@@ -11,6 +11,9 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 
 ## Architecture (Status: v0.1.0-alpha)
 
+## Independent Reviews
+- [Digital Humanism as a Commercial Circuit-Breaker and ROI Driver](docs/REVIEW_en.md) — independent AI agent review with a reproducible experiment protocol.
+
 ### 1. `safe_harbor.py` (Cryptographic Safe Harbor)
 *Implements Principles 3 and 4 of the Manifesto.*
 - **SafeHarborLedger**: Local hash-chain for intent logging. Protects against retroactive tampering.
