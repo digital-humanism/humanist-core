@@ -89,7 +89,7 @@ Traditional "human-in-the-loop" systems use manual gates (click to approve). The
 **Why this matters:**
 Bot farms often use varied prompts but generate structurally identical responses (same sentence patterns, similar paragraph lengths, repetitive rhetorical structures). Traditional spam detection looks for keywords. Structural entropy detection catches sophisticated generation that varies content but maintains underlying patterns.
 
-**Current status:** Stub implementation using MD5 hash. Production version will use embeddings or AST-based structural hashing.
+**Current status:** **Current status:** ✅ Embedding-based vector analyzer implemented (sentence-transformers, cosine similarity over a sliding window). Structural hashing retained as fallback when sentence-transformers is not installed.
 
 **Implementation:** `humanist_core/loop_breaker.py` - `DigitalBlockAnalyzer` class
 
