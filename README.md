@@ -31,6 +31,13 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 - **AgencyGuardCallback**: Integration into LangChain via Callbacks. Monitors autonomous agent hops.
 - **Status:** ✅ Conceptual integration implemented.
 
+### 4. `authority.py` (HACP Phase 1 — Authority Core)
+*Implements the Authority Core of Architecture v2.0.*
+- **IntentEnvelope**: bounded capability space granted by a human.
+- **ScopeGuard**: deny-by-default evaluation of proposed actions.
+- **DecisionToken**: bounded, expiring human approval — no global flags.
+- **Status:** ✅ Phase 1 implemented and tested (invariants 1, 3, 4).
+
 **Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
 
 ## Quick Start
