@@ -28,6 +28,8 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 - **AgencyGuardCallback**: Integration into LangChain via Callbacks. Monitors autonomous agent hops.
 - **Status:** ✅ Conceptual integration implemented.
 
+**Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
+
 ## Quick Start
 ```bash
 pip install -r requirements.txt
