@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
 
-**Version:** v0.4.0-alpha
+**Version:** 0.5.0-alpha
 **License:** AGPLv3  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
