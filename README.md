@@ -53,6 +53,16 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 - **ProvenanceGraph**: append-only, tamper-detecting graph with `explain()` reconstructing why a consequential action was allowed.
 - **Status:** ✅ Phase 3 implemented and tested (Invariant 5).
 
+### 7. `integrations/langchain_v2.py` (HACP Phase 4 — Runtime Integration)
+*Production-ready adapter for LangChain agent workflows.*
+- **HumanistCallback**: Drop-in callback that enforces HACP protocol
+- **Automatic intent registration**: Records human intent in provenance graph at workflow start
+- **Tool call evaluation**: Each tool call evaluated through AgencyKernel + RiskEngine
+- **Autonomy budget tracking**: Raises `AutonomousLoopDetected` when budget exhausted
+- **Semantic boundary detection**: Raises `SemanticBoundaryDetected` on meaningful changes
+- **Provenance recording**: All events recorded in causal ProvenanceGraph
+- **Status:** ✅ Phase 4 implemented for LangChain.
+
 **Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
 
 ## Quick Start
