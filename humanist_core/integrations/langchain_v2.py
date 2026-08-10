@@ -120,6 +120,7 @@ class HumanistCallback(BaseCallbackHandler):
         self._session_id: Optional[str] = None
         self._last_intent_event_id: Optional[str] = None
         self._last_action_semantic: Optional[SemanticAction] = None
+        self._last_tool_event_id: Optional[str] = None
         
         # Register intent in provenance
         intent_event = self.provenance.new_event(
@@ -188,6 +189,7 @@ class HumanistCallback(BaseCallbackHandler):
             parents=[self._last_intent_event_id] if self._last_intent_event_id else [],
         )
         self.provenance.append(tool_event)
+        self._last_tool_event_id = tool_event.event_id
         
         # Evaluate risk and consume budget
         risk = self.risk_engine.evaluate(
@@ -291,15 +293,16 @@ class HumanistCallback(BaseCallbackHandler):
         parent_run_id: Optional[Any] = None,
         **kwargs: Any,
     ) -> None:
-        """Called after tool execution — record result."""
+        """Called after tool execution — record causally linked result."""
+        parents = [self._last_tool_event_id] if self._last_tool_event_id else []
         result_event = self.provenance.new_event(
             event_type="tool_result",
             actor="agent",
-            payload={
-                "output_preview": output[:200] if output else "",
-            },
-            parents=[run_id] if run_id else [],
+            payload={"output_preview": (output or "")[:200]},
+            parents=parents,
         )
+        self.provenance.append(result_event)
+        
         # Note: In production, link to the corresponding tool_call event
         # For simplicity, we append without strict parent validation here
 

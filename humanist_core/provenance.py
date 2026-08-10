@@ -24,6 +24,7 @@ from typing import Any, Dict, List, Optional, Sequence
 EVENT_TYPES = frozenset({
     "intent",          # human authorization envelope issued
     "tool_call",       # autonomous action proposed / executed
+    "tool_result",     # tool execution result
     "semantic_delta",  # meaningful boundary detected
     "checkpoint",      # human judgment requested
     "decision",        # human decision produced a Decision Token

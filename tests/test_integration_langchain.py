@@ -146,3 +146,22 @@ class TestLangChainIntegration:
         status_after = callback.get_autonomy_budget_status()
         assert status_after["consumed"] > 0
         assert status_after["remaining"] < 100.0
+
+    def test_tool_end_links_result_to_call(self):
+        """tool_result event must be causally linked to tool_call in the graph."""
+        callback = HumanistCallback(
+            actor_id="user:test",
+            objective="analyse",
+            operations=["read"],
+        )
+        callback.on_tool_start(
+            serialized={"name": "search_tool"},
+            input_str="query",
+            run_id="run-1",
+        )
+        callback.on_tool_end("some output", run_id="run-1")
+
+        graph = callback.get_provenance_graph()
+        types = [e.event_type for e in graph._events.values()]
+        assert "tool_result" in types
+        assert graph.verify_all() == []
