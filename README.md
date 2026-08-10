@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
 
-**Version:** 0.2.0-alpha
+**Version:** 0.3.0-alpha
 **License:** AGPLv3  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
@@ -37,6 +37,13 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 - **ScopeGuard**: deny-by-default evaluation of proposed actions.
 - **DecisionToken**: bounded, expiring human approval — no global flags.
 - **Status:** ✅ Phase 1 implemented and tested (invariants 1, 3, 4).
+
+### 5. `boundary.py` (HACP Phase 2 — Boundary Detection)
+*Implements risk-weighted autonomy and semantic change detection.*
+- **SemanticDeltaGuard**: detects meaningful boundaries (read→write, internal→external, reversible→irreversible)
+- **RiskEngine**: context-sensitive risk evaluation across multiple dimensions (irreversibility, externality, privacy, privilege, legal, uncertainty, blast_radius)
+- **AutonomyBudget**: cumulative risk budgeting replacing fixed hop counting
+- **Status:** ✅ Phase 2 implemented and tested (invariants 2, 5, 7).
 
 **Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
 
