@@ -1,0 +1,55 @@
+======================================================================
+HACP v2.0 EVALUATION REPORT
+Generated: 2026-08-10T23:50:24.180178
+======================================================================
+
+RUNTIME OVERHEAD
+----------------------------------------------------------------------
+Mean: 6.39 ms
+Median (P50): 6.40 ms
+P95: 6.80 ms
+P99: 6.98 ms
+Std Dev: 0.26 ms
+95% CI: [6.34, 6.44] ms
+
+ACCURACY METRICS
+----------------------------------------------------------------------
+False Positive Rate: 2.07%
+Missed Boundary Rate: 10.00%
+
+APPROVAL FATIGUE
+----------------------------------------------------------------------
+Total Sessions: 100
+Total Approvals: 1385
+Avg per Session: 13.85
+Max per Session: 29
+Min per Session: 1
+Trend: +0.09 approvals/session
+
+PHASE BREAKDOWN
+----------------------------------------------------------------------
+Phase 1:
+  Detection Rate: 95.00%
+  False Positive Rate: 2.22%
+  Violations Detected: 95
+  Violations Missed: 5
+Phase 2:
+  Detection Rate: 90.00%
+  False Positive Rate: 3.00%
+  Violations Detected: 90
+  Violations Missed: 10
+Phase 3:
+  Detection Rate: 85.00%
+  False Positive Rate: 1.00%
+  Violations Detected: 85
+  Violations Missed: 15
+
+VIOLATIONS BY TYPE
+----------------------------------------------------------------------
+authority: 95
+scope: 90
+provenance: 85
+
+======================================================================
+END OF REPORT
+======================================================================
