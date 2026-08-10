@@ -2,13 +2,18 @@
     humanist-core SDK
     Copyright (C) 2026 Sten & Digital Humanism Initiative
     Licensed under AGPLv3
+
+    HACP v2.0 — Auxiliary: Autonomous Loop Breaking.
+    LangChain callback enforcing hop limits and human-approval
+    verification (AgencyGuardV2 + SafeHarborLedger).
+    See ARCHITECTURE.md (Agency Guard) and docs/ARCHITECTURE_v2.0.md.
 """
 import time
 from typing import Dict, Any, List, Optional
 try:
     from langchain_core.callbacks import BaseCallbackHandler
     from langchain_core.outputs import LLMResult
-except ImportError:
+except ImportError:  # pragma: no cover - optional dependency fallback
     BaseCallbackHandler = object
     LLMResult = None
 
