@@ -45,6 +45,14 @@ Implementation of "Digital Humanism" protocols into LLM frameworks to protect hu
 - **AutonomyBudget**: cumulative risk budgeting replacing fixed hop counting
 - **Status:** ✅ Phase 2 implemented and tested (invariants 2, 5, 7).
 
+### 6. `provenance.py` (HACP Phase 3 — Cryptographic Provenance)
+*Causal explainability for consequential actions.*
+- **ProvenanceEvent**: immutable graph node with causal parents, payload and policy digests, and a cryptographic signature.
+- **EventSigner**: HMAC-SHA256 binding (reference implementation; Ed25519 recommended for production).
+- **PolicyDigest**: binds events to the governing policy version — policy change produces a new digest.
+- **ProvenanceGraph**: append-only, tamper-detecting graph with `explain()` reconstructing why a consequential action was allowed.
+- **Status:** ✅ Phase 3 implemented and tested (Invariant 5).
+
 **Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
 
 ## Quick Start
