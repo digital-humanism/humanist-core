@@ -173,6 +173,22 @@ Pricing model: perpetual license (CAPEX) + annual support (15% of license, OPEX,
 ULA negotiated separately (2-3 yr term, certification at term end).
 The report includes baseline risk exposure, prevented incidents, false-positive review costs, payback, breakeven incident rate, 3-year TCO, and validation warnings for unrealistic assumptions.
 
+## Test Coverage
+
+**Test suite:** 122 tests, 100% coverage (816 statements, 0 missed)
+
+- Phase 1 (Authority Core): invariants 1, 3, 4
+- Phase 2 (Boundary Detection): invariants 2, 5, 7
+- Phase 3 (Cryptographic Provenance): invariant 5
+- Phase 4 (Runtime Integration): LangChain adapter edge cases
+- Phase 5 (Evaluation): synthetic benchmarks and metrics
+- Phase 5.1 (Coverage Hardening): all uncovered branches closed
+
+Run tests:
+```bash
+pytest tests/ --cov=humanist_core --cov-report=term-missing
+```
+
 ## Quick Start
 
 ```bash
