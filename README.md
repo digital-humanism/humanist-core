@@ -161,16 +161,20 @@ Phase 3: 85.00% detection, 1.00% FPR
 
 **Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
 
-## Quick Start
-
-```bash
-pip install -r requirements.txt
-```
-
 ## ROI Calculator
 
 Enterprise sales demo tool for quantifying the financial impact of HACP deployment.
 
 ```bash
 python examples/roi_calculator.py
+```
+
+Pricing model: perpetual license (CAPEX) + annual support (15% of license, OPEX, CPI+1.5% uplift from Y2). The license is priced so the client hits a target ROI on capital (--target-roi, default 12%, working band 10-15%). Capacity Unit: 50K transactions/day / 9.1 reviewer FTE / 13.85 approvals per session; exceeding any dimension adds a unit.
+ULA negotiated separately (2-3 yr term, certification at term end).
+The report includes baseline risk exposure, prevented incidents, false-positive review costs, payback, breakeven incident rate, 3-year TCO, and validation warnings for unrealistic assumptions.
+
+## Quick Start
+
+```bash
+pip install -r requirements.txt
 ```
