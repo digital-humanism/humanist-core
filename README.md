@@ -166,3 +166,11 @@ Phase 3: 85.00% detection, 1.00% FPR
 ```bash
 pip install -r requirements.txt
 ```
+
+## ROI Calculator
+
+Enterprise sales demo tool for quantifying the financial impact of HACP deployment.
+
+```bash
+python examples/roi_calculator.py
+```

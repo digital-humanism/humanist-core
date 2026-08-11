@@ -1,0 +1,66 @@
+======================================================================
+HUMANIST-CORE ROI ANALYSIS
+======================================================================
+
+INPUT PARAMETERS
+----------------------------------------------------------------------
+Transactions per day: 50,000
+Average transaction value: $50.00
+Incident probability: 0.0010%
+Average incident cost: $100.00K
+Client target ROI on CAPEX: 15.0%
+
+TECHNICAL PARAMETERS (Phase 5)
+----------------------------------------------------------------------
+Detection rate: 90.0%
+False positive rate: 2.07%
+Runtime overhead: 6.40 ms per transaction
+Approvals per session: 13.85
+
+BASELINE (WITHOUT HUMANIST-CORE)
+----------------------------------------------------------------------
+Annual transactions: 18,250,000
+Expected incidents/year: 182.5
+Annual loss exposure: $18.25M
+
+WITH HUMANIST-CORE
+----------------------------------------------------------------------
+Prevented incidents: 164.3
+Remaining incidents/year: 18.2
+Annual loss with guard: $1.82M
+False positives flagged/year: 377,775
+FP review cost (analyst time): $1.09M
+Reviewer headcount: 9.1 FTE
+Runtime overhead: 32.4 hours/year
+
+FINANCIAL IMPACT
+----------------------------------------------------------------------
+Gross annual savings: $15.34M
+Support Y1 (OPEX): $7.67M
+Annual net benefit: $7.67M
+ROI on CAPEX: 15.0%
+Payback: 6.7 years (static, excl. uplift)
+Breakeven incident rate (10-yr payback): 0.0008% (your assumption is 1.2x above)
+
+COMMERCIAL TERMS (3-YEAR HORIZON)
+----------------------------------------------------------------------
+Capacity Units: 1 (50K tpd / 9.1 FTE / 13.85 approvals per session)
+License (perpetual, CAPEX): $51.12M
+Support Y1 (15% of license, OPEX): $7.67M
+Annual uplift from Y2: 4.5% (CPI + 1.5%)
+3-year TCO: $75.17M
+3-year gross savings: $46.01M
+Note: avoided losses do not appear in P&L; evaluate as balance-sheet protection.
+Unlimited License Agreement (ULA): negotiated separately (2-3 yr term, certification at term end)
+
+OPERATIONAL METRICS
+----------------------------------------------------------------------
+Approval fatigue: Moderate (acceptable)
+
+VALIDATION WARNINGS
+----------------------------------------------------------------------
+WARNING: FP volume requires 9.1 full-time reviewers. Consider tuning detection thresholds or auto-approving low-risk scopes.
+
+RECOMMENDATION: Solid ROI - proceed with deployment
+
+======================================================================
