@@ -1,0 +1,9 @@
+{
+  "include": ["humanist_core", "tests"],
+  "extraPaths": ["."],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.10",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": "warning"
+}
