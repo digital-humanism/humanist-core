@@ -40,6 +40,7 @@ The repository contains both the original experimental prototype and the current
 | Python ↔ Go sidecar wire interoperability | ✅ Verified |
 | Signed `IntentEnvelope` + `DecisionToken` → real sidecar `ALLOW` | ✅ Verified |
 | Full HACP v2.0 reference implementation | 🚧 In progress |
+| Humanist Core 2.0 production hardening roadmap | 📋 Defined |
 
 The current architectural target is documented in [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md).
 
@@ -91,6 +92,33 @@ See:
 - [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md)
 - [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md)
 - [`docs/README.md`](docs/README.md)
+
+## Roadmap
+
+Humanist Core is currently in the **model validation** stage.
+
+The current focus is on validating the HACP authority model, Action Boundaries, Semantic Checkpoints, Autonomy Budgets, and cross-language interoperability before freezing the protocol surface for production use.
+
+The planned **Humanist Core 2.0** milestone is focused on technological completion rather than expansion of scope. Its purpose is to close the production and protocol-hardening gaps around the current model, including:
+
+- human-governed authority roots and authority lineage;
+- mandatory attenuation for delegated authority;
+- provenance-aware M2M loop breaking;
+- full Semantic Checkpoint and reauthorization flows;
+- typed action semantics and MCP-native enforcement;
+- key lifecycle, rotation, and revocation;
+- normative conformance as a release gate;
+- negative E2E security coverage, property testing, and fuzzing;
+- protocol versioning and compatibility rules;
+- anti-bypass production deployment requirements;
+- privacy-minimized provenance and observability;
+- a formal threat model.
+
+The project intentionally keeps HACP focused on **Agency Management and action-boundary enforcement**, rather than turning it into a content-moderation system, IAM replacement, service mesh, SIEM, or universal policy engine.
+
+See:
+
+- [`docs/HUMANIST_CORE_2.0_ROADMAP.md`](docs/HUMANIST_CORE_2.0_ROADMAP.md) — Humanist Core 2.0 technology-completion roadmap
 
 ## Core Components
 
@@ -267,6 +295,7 @@ Start with [`docs/README.md`](docs/README.md).
 Key documents:
 
 - [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md) — current HACP architecture;
+- [`docs/HUMANIST_CORE_2.0_ROADMAP.md`](docs/HUMANIST_CORE_2.0_ROADMAP.md) — roadmap from model validation to production-grade Humanist Core 2.0;
 - [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — implementation and interoperability record;
 - [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md) — operational verification procedure;
 - [`docs/REVIEW_en.md`](docs/REVIEW_en.md) — independent review;
