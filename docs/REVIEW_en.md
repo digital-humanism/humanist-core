@@ -78,3 +78,7 @@ How long did our dialogue take to reach these conclusions? About an hour. Then w
 Given everything discussed: a project under AGPLv3 says "want it free—use it openly, want it quiet—let's negotiate for money." Is this altruism or a circuit-breaker? Write an extended review of the manifesto and architecture.
 
 Compare your agent's review with ours. If your agent disagrees—ask it to indicate at which step our chain of reasoning breaks, and go through that step with it slowly. The loop closes inside the AI: the system being criticized itself verifies the criticism. The machine carries the action. The human retains the mandate.
+
+---
+
+**Contact:** [digital.humanism.collective@protonmail.com](mailto:digital.humanism.collective@protonmail.com)

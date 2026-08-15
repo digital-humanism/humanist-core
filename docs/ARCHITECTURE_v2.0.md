@@ -2,7 +2,10 @@
 
 **Working title:** Human Agency Continuity Protocol (HACP)  
 **Reference implementation:** `humanist-core`  
-**Document:** `ARCHITECTURE_ver2.0.md`
+**Architecture version:** v2.0  
+**Current verified wire interoperability:** HACP v0.9  
+**Implementation status:** active, partially implemented and cross-language verified  
+**Last interoperability verification:** 2026-08-15
 
 ### Document Status
 
@@ -2434,12 +2437,47 @@ The proposed novelty, if validated by further research and comparison, lies in t
 This claim should remain provisional until broader literature review, formalization, and peer review establish whether an equivalent invariant has already been proposed elsewhere.
 
 
-## Status
+## Document Status
 
-**Version:** 2.0 final architectural specification (conceptual)  
-**Protocol name:** Human Agency Continuity Protocol (HACP)  
-**Reference implementation:** Humanist Core  
-**Prototype basis:** Humanist Core v0.1 — implemented and experimentally tested  
-**v2.0 implementation status:** reference implementation pending  
-**Research status:** related-work positioning and novelty claims remain provisional pending broader literature review, formalization, independent replication, and peer review  
-**Design posture:** broad architectural scope; narrow implementation ownership
+```text
+Humanist Core v0.1
+experimental prototype — implemented, tested, and retained as historical context
+
+HACP / Architecture v2.0
+second-generation architecture derived from prototype findings
+
+Implemented in humanist-core:
+- Authority Core
+- Semantic Boundary / Risk Engine
+- Cryptographic Provenance
+- LangChain runtime integration
+- Evaluation framework
+- Python HACP SDK
+
+Cross-language interoperability verified:
+- Python IntentEnvelope → Go hacp-sidecar
+- Python DecisionToken → Go hacp-sidecar
+- JCS canonicalization
+- Ed25519 signatures
+- HTTP ProposedAction / action_hash binding
+- real signed request → ALLOW
+- token max_uses / replay enforcement
+
+Full Architecture v2.0 reference implementation:
+in progress
+```
+
+This document describes the **v2.0 target architecture and its protocol-level invariants**, while also distinguishing which parts are already implemented and experimentally verified.
+
+The current Python SDK and Go sidecar interoperate using the HACP v0.9 wire contract. The architecture version (`v2.0`) and the wire-protocol version (`v0.9`) are separate version dimensions and should not be conflated.
+
+For the implementation record, see:
+
+- [`Integration with HACP Sidecar.md`](Integration%20with%20HACP%20Sidecar.md)
+- [`HACP Integration Verification Guide.md`](HACP%20Integration%20Verification%20Guide.md)
+
+> **Scope principle:** HACP has broad architectural scope, but intentionally narrow implementation ownership. It coordinates authority mechanisms; it does not seek to replace them.
+>
+> ---
+
+**Contact:** [digital.humanism.collective@protonmail.com](mailto:digital.humanism.collective@protonmail.com)

@@ -3,94 +3,179 @@
 ![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
 
 **Version:** 0.5.0-alpha  
-**License:** AGPLv3  
+**License:** AGPL-3.0-or-later  
+**Architecture:** Human Agency Continuity Protocol (HACP) v2.0  
+**Current wire interoperability:** HACP v0.9  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
 ## Project Goal
 
-Implementation of "Digital Humanism" protocols into LLM frameworks to protect human agency. The SDK prevents autonomous Machine-to-Machine (M2M) loops, protects against cognitive manipulation, and restores the human right to final semantic decision-making.
+`humanist-core` is an SDK for implementing Digital Humanism protocols in LLM and autonomous-agent frameworks.
 
-## Architecture (Status: v0.2.0-alpha)
+The project focuses on preserving **human agency as a continuity property of autonomous execution**: an autonomous system may act within explicitly granted authority, but must not silently cross meaningful semantic, scope, risk, or externality boundaries.
 
-## Independent Reviews
+The current implementation combines:
 
-- [Digital Humanism as a Commercial Circuit-Breaker and ROI Driver](docs/REVIEW_en.md) — independent AI agent review with a reproducible experiment protocol.
+- bounded human authority through `IntentEnvelope` and `DecisionToken`;
+- semantic boundary detection;
+- risk-weighted autonomy budgets;
+- causal provenance;
+- LangChain runtime integration;
+- HACP wire-level interoperability with the Go `hacp-sidecar`;
+- evaluation and benchmarking tools.
 
-### 1. `safe_harbor.py` (Cryptographic Safe Harbor)
+## Architecture Status
 
-*Implements Principles 3 and 4 of the Manifesto.*
+The repository contains both the original experimental prototype and the current HACP architecture.
 
-- **SafeHarborLedger**: Local hash-chain for intent logging. Protects against retroactive tampering.
-- **SovereigntyManager**: Consent management and simulation of the "Right to be Forgotten".
-- **Status:** ✅ Core logic implemented.
+| Area | Status |
+|---|---|
+| Legacy prototype mechanisms | Implemented and retained for research/history |
+| HACP Phase 1 — Authority Core | ✅ Implemented and tested |
+| HACP Phase 2 — Boundary Detection | ✅ Implemented and tested |
+| HACP Phase 3 — Cryptographic Provenance | ✅ Implemented and tested |
+| HACP Phase 4 — LangChain Runtime Integration | ✅ Implemented and tested |
+| HACP Phase 5 — Evaluation Framework | ✅ Implemented and tested |
+| Python HACP SDK | ✅ Implemented |
+| Python ↔ Go sidecar wire interoperability | ✅ Verified |
+| Signed `IntentEnvelope` + `DecisionToken` → real sidecar `ALLOW` | ✅ Verified |
+| Full HACP v2.0 reference implementation | 🚧 In progress |
 
-### 2. `loop_breaker.py` (Agency Guard)
+The current architectural target is documented in [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md).
 
-*Implements Principle 7.1 (Semantic Checkpoints).*
+The original prototype architecture is retained as historical context in `docs/ARCHITECTURE_v0.1.md`.
 
-- **CognitiveLoadAnalyzer**: Biometrics of consciousness. Calculates the minimum time required for a biological human to analyze text.
-- **AgencyGuardV2**: Detector for M2M loops and anomalous cognitive velocity.
-- **DigitalBlockAnalyzer**: Structural entropy detector (embedding-based).
-- **Status:** ✅ Cognitive load logic implemented. ✅ Embedding-based vector analyzer implemented.
+## HACP Sidecar Integration
 
-### 3. `integrations/langchain_guard.py` (Immune System)
+`humanist-core` now includes a Python HACP SDK under:
 
-- **AgencyGuardCallback**: Integration into LangChain via Callbacks. Monitors autonomous agent hops.
-- **Status:** ✅ Conceptual integration implemented.
+```text
+humanist_core/hacp/
+```
 
-### 4. `authority.py` (HACP Phase 1 — Authority Core)
+The verified request path is:
 
-*Implements the Authority Core of Architecture v2.0.*
+```text
+Application
+    ↓
+humanist-core HACP SDK
+    ↓
+IntentEnvelope + DecisionToken
+    ↓
+JCS + Ed25519 + SHA-256 + Base64url
+    ↓
+X-HACP-Intent-Envelope
+X-HACP-Decision-Token
+    ↓
+hacp-sidecar (Go)
+    ↓
+schema / signatures / binding / scope / budget / provenance
+    ↓
+ALLOW / DENY / CHECKPOINT
+```
 
-- **IntentEnvelope**: bounded capability space granted by a human.
-- **ScopeGuard**: deny-by-default evaluation of proposed actions.
-- **DecisionToken**: bounded, expiring human approval — no global flags.
-- **Status:** ✅ Phase 1 implemented and tested (invariants 1, 3, 4).
+The E2E integration verifies:
 
-### 5. `boundary.py` (HACP Phase 2 — Boundary Detection)
+- fail-closed behavior without HACP credentials;
+- HACP v0.9 wire compatibility;
+- JCS compatibility between Python and Go;
+- Ed25519 interoperability;
+- HTTP `ProposedAction` / `action_hash` compatibility;
+- signed envelope/token binding;
+- real sidecar `ALLOW`;
+- public `SidecarClient` → real sidecar `ALLOW`;
+- `max_uses` enforcement and replay protection.
 
-*Implements risk-weighted autonomy and semantic change detection.*
+See:
 
-- **SemanticDeltaGuard**: detects meaningful boundaries (read→write, internal→external, reversible→irreversible)
-- **RiskEngine**: context-sensitive risk evaluation across multiple dimensions (irreversibility, externality, privacy, privilege, legal, uncertainty, blast_radius)
-- **AutonomyBudget**: cumulative risk budgeting replacing fixed hop counting
-- **Status:** ✅ Phase 2 implemented and tested (invariants 2, 5, 7).
+- [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md)
+- [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md)
+- [`docs/README.md`](docs/README.md)
 
-### 6. `provenance.py` (HACP Phase 3 — Cryptographic Provenance)
+## Core Components
 
-*Causal explainability for consequential actions.*
+### `authority.py` — HACP Authority Core
 
-- **ProvenanceEvent**: immutable graph node with causal parents, payload and policy digests, and a cryptographic signature.
-- **EventSigner**: HMAC-SHA256 binding (reference implementation; Ed25519 recommended for production).
-- **PolicyDigest**: binds events to the governing policy version — policy change produces a new digest.
-- **ProvenanceGraph**: append-only, tamper-detecting graph with `explain()` reconstructing why a consequential action was allowed.
-- **Status:** ✅ Phase 3 implemented and tested (Invariant 5).
+Provides bounded authorization primitives.
 
-### 7. `integrations/langchain_v2.py` (HACP Phase 4 — Runtime Integration)
+- `IntentEnvelope`
+- `ScopeGuard`
+- `DecisionToken`
+- deny-by-default scope evaluation
 
-*Production-ready adapter for LangChain agent workflows.*
+**Status:** ✅ Implemented and tested.
 
-- **HumanistCallback**: Drop-in callback that enforces HACP protocol
-- **Automatic intent registration**: Records human intent in provenance graph at workflow start
-- **Tool call evaluation**: Each tool call evaluated through AgencyKernel + RiskEngine
-- **Autonomy budget tracking**: Raises `AutonomousLoopDetected` when budget exhausted
-- **Semantic boundary detection**: Raises `SemanticBoundaryDetected` on meaningful changes
-- **Provenance recording**: All events recorded in causal ProvenanceGraph
-- **Status:** ✅ Phase 4 implemented for LangChain.
+### `boundary.py` — Semantic Boundary and Risk Engine
 
-## Phase 5: Evaluation (v0.5.0)
+Provides risk-weighted autonomy and semantic change detection.
 
-Comprehensive evaluation framework for measuring HACP v2.0 effectiveness:
+- `SemanticDeltaGuard`
+- `RiskEngine`
+- `AutonomyBudget`
+- read → write boundary detection
+- internal → external boundary detection
+- reversible → irreversible boundary detection
 
-### Metrics
+**Status:** ✅ Implemented and tested.
 
-- **Runtime Overhead**: Per-envelope latency with P50/P95/P99 percentiles and 95% confidence intervals
-- **False Positive Rate**: Percentage of legitimate actions incorrectly blocked
-- **Missed Boundary Rate**: Percentage of violations the system failed to detect
-- **Approval Fatigue**: Per-session approval counts with temporal trend analysis
-- **Per-Phase Detection**: Detection rate and FPR for each HACP phase
+### `provenance.py` — Causal Provenance
 
-### Benchmark Framework
+Provides causal explainability for consequential actions.
+
+- immutable provenance events;
+- causal parent relationships;
+- policy digests;
+- tamper detection;
+- `explain()` reconstruction.
+
+**Status:** ✅ Implemented and tested.
+
+### `integrations/langchain_v2.py` — Runtime Integration
+
+Provides a LangChain callback adapter that applies HACP controls to agent workflows.
+
+- automatic intent registration;
+- tool-call evaluation;
+- autonomy-budget tracking;
+- semantic-boundary enforcement;
+- causal provenance recording.
+
+**Status:** ✅ Implemented and tested.
+
+### `humanist_core/hacp/` — HACP Python SDK
+
+Provides the wire-facing Python implementation used with `hacp-sidecar`.
+
+Key modules:
+
+```text
+models.py       HACP wire/data models
+builders.py     EnvelopeBuilder / TokenBuilder
+crypto.py       JCS / Ed25519 / SHA-256 / Base64url
+client.py       SidecarClient
+exceptions.py   typed HACP reason-code mapping
+cli.py          command-line interface
+```
+
+### `safe_harbor.py` and `loop_breaker.py` — Prototype / Research Components
+
+These components preserve earlier project research into tamper-evident intent logging, loop detection, cognitive-load heuristics, and digital-block similarity.
+
+They remain useful as experimental mechanisms and historical context, but the current HACP v2.0 architecture does **not** define biological-human detection as its central trust primitive.
+
+For the current trust model, see [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md).
+
+## Evaluation Framework
+
+The repository includes an evaluation framework for measuring:
+
+- runtime overhead;
+- false-positive rate;
+- missed-boundary rate;
+- approval fatigue;
+- per-phase detection behavior.
+
+Example:
 
 ```python
 from humanist_core.evaluation import (
@@ -99,98 +184,106 @@ from humanist_core.evaluation import (
     measure_runtime_overhead_detailed,
     generate_evaluation_report,
 )
-
-# Generate synthetic test data
-dataset = BenchmarkDataset.generate_balanced_dataset(
-    size=1000,
-    violation_rate=0.10,
-    approval_rate=0.20,
-)
-
-# Measure runtime overhead
-processor = MockEnvelopeProcessor()
-runtime_metrics = measure_runtime_overhead_detailed(processor, dataset.envelopes[:100])
-
-# Simulate approval fatigue
-sessions = ApprovalFatigueSimulator.simulate_sessions(num_sessions=100)
-
-# Generate full evaluation report
-report = generate_evaluation_report(evaluation_metrics)
 ```
 
-### Example Report Output
+Run the demo:
 
-```text
-======================================================================
-HACP v2.0 EVALUATION REPORT
-Generated: 2026-08-10T23:50:24.180178
-======================================================================
-
-RUNTIME OVERHEAD
-----------------------------------------------------------------------
-Mean: 6.39 ms
-Median (P50): 6.40 ms
-P95: 6.80 ms
-P99: 6.98 ms
-Std Dev: 0.26 ms
-95% CI: [6.34, 6.44] ms
-
-ACCURACY METRICS
-----------------------------------------------------------------------
-False Positive Rate: 2.07%
-Missed Boundary Rate: 10.00%
-
-APPROVAL FATIGUE
-----------------------------------------------------------------------
-Total Sessions: 100
-Total Approvals: 1385
-Avg per Session: 13.85
-Trend: +0.09 approvals/session
-
-PHASE BREAKDOWN
-----------------------------------------------------------------------
-Phase 1: 95.00% detection, 2.22% FPR
-Phase 2: 90.00% detection, 3.00% FPR
-Phase 3: 85.00% detection, 1.00% FPR
-
-======================================================================
-
+```bash
+python examples/evaluation_demo.py
 ```
-**Run the full demo:** python examples/evaluation_demo.py
-
-
-**Target architecture (v2.0 / HACP):** [docs/ARCHITECTURE_v2.0.md](docs/ARCHITECTURE_v2.0.md) — reference implementation pending (milestone v0.2.0).
 
 ## ROI Calculator
 
-Enterprise sales demo tool for quantifying the financial impact of HACP deployment.
+The repository also includes an enterprise ROI modeling tool:
 
 ```bash
 python examples/roi_calculator.py
 ```
 
-Pricing model: perpetual license (CAPEX) + annual support (15% of license, OPEX, CPI+1.5% uplift from Y2). The license is priced so the client hits a target ROI on capital (--target-roi, default 12%, working band 10-15%). Capacity Unit: 50K transactions/day / 9.1 reviewer FTE / 13.85 approvals per session; exceeding any dimension adds a unit.
-ULA negotiated separately (2-3 yr term, certification at term end).
-The report includes baseline risk exposure, prevented incidents, false-positive review costs, payback, breakeven incident rate, 3-year TCO, and validation warnings for unrealistic assumptions.
+The calculator models risk exposure, false-positive review cost, payback, breakeven incident rate, and multi-year TCO.
 
-## Test Coverage
+Its outputs should be interpreted as scenario/model results rather than universal empirical performance claims.
 
-**Test suite:** 122 tests, 100% coverage (816 statements, 0 missed)
+## Test and Coverage Baseline
 
-- Phase 1 (Authority Core): invariants 1, 3, 4
-- Phase 2 (Boundary Detection): invariants 2, 5, 7
-- Phase 3 (Cryptographic Provenance): invariant 5
-- Phase 4 (Runtime Integration): LangChain adapter edge cases
-- Phase 5 (Evaluation): synthetic benchmarks and metrics
-- Phase 5.1 (Coverage Hardening): all uncovered branches closed
+Current validated baseline:
 
-Run tests:
+```text
+Full test suite:                 148 passed
+HACP SDK unit tests:              21 passed
+HACP sidecar E2E tests:            5 passed
+Existing internal core coverage: 100%
+Overall project coverage:         91%
+```
+
+The overall coverage percentage is lower than the original core because the newly added HACP SDK includes additional code paths, especially the CLI.
+
+Run the full suite:
+
 ```bash
 pytest tests/ --cov=humanist_core --cov-report=term-missing
 ```
 
-## Quick Start
+Run the HACP E2E suite:
 
 ```bash
-pip install -r requirements.txt
+pytest tests/test_hacp_sidecar_integration.py -vv -rs --tb=long
 ```
+
+The E2E suite requires a running sidecar and shared test identity. See the [HACP Integration Verification Guide](docs/HACP%20Integration%20Verification%20Guide.md).
+
+## Quick Start
+
+Create and activate a virtual environment, then install the project:
+
+```bash
+pip install -e .
+```
+
+Verify the CLI:
+
+```bash
+humanist --help
+```
+
+Basic SDK imports:
+
+```python
+from humanist_core.hacp import (
+    EnvelopeBuilder,
+    TokenBuilder,
+    SidecarClient,
+)
+```
+
+For real sidecar integration, follow:
+
+[`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md)
+
+## Documentation
+
+Start with [`docs/README.md`](docs/README.md).
+
+Key documents:
+
+- [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md) — current HACP architecture;
+- [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — implementation and interoperability record;
+- [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md) — operational verification procedure;
+- [`docs/REVIEW_en.md`](docs/REVIEW_en.md) — independent review;
+- `docs/ARCHITECTURE_v0.1.md` — legacy prototype architecture after migration.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+Changes to HACP wire models, canonicalization, signatures, action binding, or sidecar interaction should include corresponding unit and/or E2E verification.
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 or later. See [`LICENSE`](LICENSE).
+
+Commercial licensing information is available in [`COMMERCIAL.md`](COMMERCIAL.md).
+
+---
+
+**Contact:** [digital.humanism.collective@protonmail.com](mailto:digital.humanism.collective@protonmail.com)
