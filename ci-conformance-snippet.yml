@@ -1,0 +1,13 @@
+# Merge these steps into .github/workflows/tests.yml
+- name: Checkout HACP specification
+  uses: actions/checkout@v4
+  with:
+    repository: digital-humanism/hacp-spec
+    ref: v0.9.2
+    path: hacp-spec
+
+- name: Run HACP conformance tests
+  env:
+    HACP_SPEC_REPO: ${{ github.workspace }}/hacp-spec
+  run: |
+    python -m pytest tests/conformance -v -rs

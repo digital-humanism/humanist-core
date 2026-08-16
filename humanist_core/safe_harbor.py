@@ -44,7 +44,8 @@ class SafeHarborLedger:
         try:
             with open(self.path, "r", encoding="utf-8") as f:
                 lines = f.readlines()
-                if not lines: return self.GENESIS_HASH
+                if not lines:
+                    return self.GENESIS_HASH
                 last_entry = json.loads(lines[-1])
                 return last_entry.get('record_hash', self.GENESIS_HASH)
         except:

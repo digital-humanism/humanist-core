@@ -20,9 +20,18 @@ jobs:
           - "3.12"
           - "3.13"
 
+    env:
+      HACP_SPEC_REPO: ${{ github.workspace }}/hacp-spec
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Checkout HACP specification
+        uses: actions/checkout@v5
+        with:
+          repository: digital-humanism/hacp-spec
+          path: hacp-spec
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -43,9 +52,18 @@ jobs:
     name: Coverage gate
     runs-on: ubuntu-latest
 
+    env:
+      HACP_SPEC_REPO: ${{ github.workspace }}/hacp-spec
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Checkout HACP specification
+        uses: actions/checkout@v5
+        with:
+          repository: digital-humanism/hacp-spec
+          path: hacp-spec
 
       - name: Set up Python 3.13
         uses: actions/setup-python@v6
@@ -62,6 +80,7 @@ jobs:
         run: |
           python -m pytest tests/ \
             --cov=humanist_core \
+            --cov-branch \
             --cov-report=term-missing \
             --cov-fail-under=100 \
             -rs
