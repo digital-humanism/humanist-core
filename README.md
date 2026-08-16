@@ -10,7 +10,7 @@
 
 ## Project Goal
 
-`humanist-core` is an SDK for implementing Digital Humanism protocols in LLM  and autonomous-agent frameworks.
+`humanist-core` is an SDK for implementing Digital Humanism protocols in LLM and autonomous-agent frameworks.
 
 The project focuses on preserving **human agency as a continuity property of autonomous execution**: an autonomous system may act within explicitly granted authority, but must not silently cross meaningful semantic, scope, risk, or externality boundaries.
 
