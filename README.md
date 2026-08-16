@@ -37,6 +37,7 @@ The repository contains both the original experimental prototype and the current
 | HACP Phase 4 — LangChain Runtime Integration | ✅ Implemented and tested |
 | HACP Phase 5 — Evaluation Framework | ✅ Implemented and tested |
 | Python HACP SDK | ✅ Implemented |
+| Python HACP SDK verification baseline | ✅ 211 passed / 100% statement coverage |
 | Python ↔ Go sidecar wire interoperability | ✅ Verified |
 | Signed `IntentEnvelope` + `DecisionToken` → real sidecar `ALLOW` | ✅ Verified |
 | Full HACP v2.0 reference implementation | 🚧 In progress |
@@ -92,6 +93,10 @@ See:
 - [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md)
 - [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md)
 - [`docs/README.md`](docs/README.md)
+
+For the current Python SDK verification baseline, negative-path coverage, and assurance limitations, see:
+
+- [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)
 
 ## Roadmap
 
@@ -232,33 +237,67 @@ The calculator models risk exposure, false-positive review cost, payback, breake
 
 Its outputs should be interpreted as scenario/model results rather than universal empirical performance claims.
 
-## Test and Coverage Baseline
+## Test and Verification Baseline
 
-Current validated baseline:
+Current validated Python baseline:
 
 ```text
-Full test suite:                 148 passed
-HACP SDK unit tests:              21 passed
-HACP sidecar E2E tests:            5 passed
-Existing internal core coverage: 100%
-Overall project coverage:         91%
+Full collected test suite:         216 tests
+Passed:                            211
+External sidecar E2E skipped:        5
+Warnings:                            0
+Project statement coverage:        100%
+Statements:                        1336
+Missed statements:                   0
 ```
 
-The overall coverage percentage is lower than the original core because the newly added HACP SDK includes additional code paths, especially the CLI.
+The five skipped tests belong to the real external `hacp-sidecar` E2E layer. They require a running Go sidecar and configured local test signing identity. They are intentionally skipped when the external E2E environment is not enabled.
 
-Run the full suite:
+The current Python implementation therefore reaches **100% statement coverage** for the checked-in test suite.
+
+This result is treated as a **regression and reproducibility baseline, not as a security proof**. The suite includes explicit negative-path and fail-closed testing for:
+
+- authority and scope validation;
+- `IntentEnvelope` and `DecisionToken` construction;
+- HTTP `ProposedAction` / `action_hash` binding;
+- JCS canonicalization;
+- Ed25519 signing and verification;
+- malformed cryptographic input;
+- token lifecycle and `max_uses`;
+- sidecar ALLOW / DENY / CHECKPOINT handling;
+- unknown or missing HACP decisions;
+- CLI transport and URL handling;
+- replay and budget enforcement.
+
+Real Python ↔ Go interoperability remains a separate verification layer.
+
+Run the default suite:
 
 ```bash
 pytest tests/ --cov=humanist_core --cov-report=term-missing
 ```
 
-Run the HACP E2E suite:
+Reference result:
+
+```text
+211 passed, 5 skipped
+1336 statements, 0 missed
+100% statement coverage
+0 warnings
+```
+
+Run the external HACP sidecar E2E suite:
 
 ```bash
 pytest tests/test_hacp_sidecar_integration.py -vv -rs --tb=long
 ```
 
-The E2E suite requires a running sidecar and shared test identity. See the [HACP Integration Verification Guide](docs/HACP%20Integration%20Verification%20Guide.md).
+The E2E suite requires a running sidecar and shared local test identity.
+
+See:
+
+- [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md) — detailed verification and security-hardening record;
+- [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md) — operational external-sidecar verification procedure.
 
 ## Quick Start
 
@@ -296,6 +335,7 @@ Key documents:
 
 - [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md) — current HACP architecture;
 - [`docs/HUMANIST_CORE_2.0_ROADMAP.md`](docs/HUMANIST_CORE_2.0_ROADMAP.md) — roadmap from model validation to production-grade Humanist Core 2.0;
+- [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md) — reproducible Python SDK verification baseline, security hardening, negative-path testing, coverage methodology, and assurance limitations;
 - [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — implementation and interoperability record;
 - [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md) — operational verification procedure;
 - [`docs/REVIEW_en.md`](docs/REVIEW_en.md) — independent review;
@@ -306,6 +346,12 @@ Key documents:
 See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 Changes to HACP wire models, canonicalization, signatures, action binding, or sidecar interaction should include corresponding unit and/or E2E verification.
+
+Security-relevant changes should test both the expected path and applicable fail-closed / negative paths.
+
+The established Python statement-coverage baseline should not be reduced without an explicit documented reason.
+
+Do not add artificial tests that mutate private implementation state solely to satisfy coverage metrics; prefer public-API verification or removal of unreachable/duplicated logic.
 
 ## License
 

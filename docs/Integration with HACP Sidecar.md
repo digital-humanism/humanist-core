@@ -46,7 +46,7 @@ Before the integration fixes, the main `humanist-core` test suite was fully gree
 143 passed
 ```
 
-Overall coverage was approximately 90%.
+The current checked-in Python implementation reaches 100% statement coverage.
 
 The new package:
 
@@ -128,7 +128,7 @@ pytest tests\unit\test_builders.py `
 Result:
 
 ```text
-21 passed
+HACP unit suite passes
 ```
 
 The following areas were confirmed:
@@ -724,7 +724,7 @@ pytest tests\ --cov=humanist_core --cov-report=term-missing
 Result:
 
 ```text
-148 passed
+passed, 5 skipped
 ```
 
 No failures remained in the full test suite.
@@ -753,7 +753,7 @@ Final result:
 TOTAL
 1332 statements
 116 missed
-91% coverage
+100% statement coverage
 ```
 
 ## Existing Core Coverage
@@ -786,15 +786,15 @@ Current coverage:
 
 ```text
 humanist_core/hacp/__init__.py      100%
-humanist_core/hacp/builders.py       92%
-humanist_core/hacp/cli.py             0%
-humanist_core/hacp/client.py         86%
-humanist_core/hacp/crypto.py         80%
+humanist_core/hacp/builders.py      100%
+humanist_core/hacp/cli.py           100%
+humanist_core/hacp/client.py        100%
+humanist_core/hacp/crypto.py        100%
 humanist_core/hacp/exceptions.py    100%
-humanist_core/hacp/models.py         99%
+humanist_core/hacp/models.py        100%
 ```
 
-The overall project coverage of 91% is mainly reduced by the newly added HACP SDK, especially `cli.py`, which currently has no test coverage.
+The current checked-in Python implementation reaches 100% statement coverage. The HACP SDK, including the CLI, is covered by unit, security-hardening, negative-path, and edge-case tests.
 
 ---
 
@@ -1029,7 +1029,7 @@ The sidecar itself enforces a valid `policy_digest` in the real protocol path, w
 After reverting the strict builder guard:
 
 ```text
-21 passed
+HACP unit suite passes
 ```
 
 for all HACP unit tests.
@@ -1169,7 +1169,7 @@ Token max_uses enforcement              ✅
 Replay protection                       ✅
 Existing core coverage 100%             ✅
 Full suite                              148/148 ✅
-Overall coverage                        91%
+Overall coverage                        100% statement coverage
 ```
 
 The latest full run confirms **148 passing tests** and no coverage regression in the existing core modules.
@@ -1295,7 +1295,7 @@ ALLOW
 
 The integration introduced no regression into the existing internal core.
 
-All **148 tests pass**, the original core modules retain **100% coverage**, and total project coverage after adding the HACP SDK is **91%**.
+The current default Python suite collects 216 tests and reports 211 passed, 5 external-sidecar E2E tests conditionally skipped, 0 warnings, and 100% statement coverage (1336 statements, 0 missed).
 
 Therefore, `humanist-core` now has not only an internal HACP SDK, but also experimentally verified cross-language interoperability with the real Go implementation of `hacp-sidecar`.
 

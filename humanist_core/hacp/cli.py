@@ -6,6 +6,7 @@ import sys
 import time
 from pathlib import Path
 from typing import Optional
+from urllib.parse import urlsplit
 
 import click
 
@@ -131,20 +132,36 @@ def request(url, method, envelope_b64_path, token_b64_path):
     """Make an HTTP request through the HACP sidecar."""
     envelope_b64 = None
     token_b64 = None
+
     if envelope_b64_path:
         envelope_b64 = Path(envelope_b64_path).read_text().strip()
     if token_b64_path:
         token_b64 = Path(token_b64_path).read_text().strip()
 
-    with SidecarClient(base_url=url) as client:
-        try:
+    parsed = urlsplit(url)
+    if not parsed.scheme or not parsed.netloc:
+        raise click.BadParameter(
+            "URL must be absolute, e.g. http://127.0.0.1:8080/api/test",
+            param_hint="--url",
+        )
+
+    base_url = f"{parsed.scheme}://{parsed.netloc}"
+    request_path = parsed.path or "/"
+    if parsed.query:
+        request_path = f"{request_path}?{parsed.query}"
+
+    try:
+        with SidecarClient(base_url=base_url) as client:
             response = client.request(
-                method=method, path="", envelope=envelope_b64, token=token_b64
+                method=method,
+                path=request_path,
+                envelope=envelope_b64,
+                token=token_b64,
             )
             click.echo(json.dumps(response.json(), indent=2))
-        except Exception as e:
-            click.echo(f"Error: {e}", err=True)
-            sys.exit(1)
+    except Exception as e:
+        click.echo(f"Error: {e}", err=True)
+        raise click.exceptions.Exit(1)
 
 
 if __name__ == "__main__":

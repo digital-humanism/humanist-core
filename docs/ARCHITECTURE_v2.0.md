@@ -6,6 +6,45 @@
 **Current verified wire interoperability:** HACP v0.9  
 **Implementation status:** active, partially implemented and cross-language verified  
 **Last interoperability verification:** 2026-08-15
+### Current Verification Status
+
+The current checked-in Python implementation has completed its initial
+verification baseline:
+
+```text
+Collected tests:                     216
+Passed:                              211
+External-sidecar E2E skipped:          5
+Warnings:                              0
+Statements:                         1336
+Missed statements:                     0
+Statement coverage:                  100%
+````
+
+The five skipped tests belong to the real external `hacp-sidecar` E2E layer and
+are expected to be skipped when that environment is not enabled.
+
+This result is a **regression and reproducibility baseline, not a security
+proof**.
+
+It verifies the current Python implementation across:
+
+* fail-closed authority and scope handling;
+* `IntentEnvelope` and `DecisionToken` construction;
+* HTTP `ProposedAction` / `action_hash` binding;
+* JCS canonicalization;
+* Ed25519 signing and verification;
+* malformed cryptographic input;
+* SidecarClient decision handling;
+* CLI transport and error paths;
+* token lifecycle, replay, and budget behavior.
+
+Real Python ↔ Go interoperability remains a separate verification layer.
+
+See:
+
+* [`knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)
+* [`HACP Integration Verification Guide.md`](HACP%20Integration%20Verification%20Guide.md)
 
 ### Document Status
 
@@ -2454,6 +2493,14 @@ Implemented in humanist-core:
 - Evaluation framework
 - Python HACP SDK
 
+Verification baseline:
+- 211 passed
+- 5 external-sidecar E2E tests conditionally skipped
+- 0 warnings
+- 1336 statements
+- 0 missed
+- 100% Python statement coverage
+
 Cross-language interoperability verified:
 - Python IntentEnvelope → Go hacp-sidecar
 - Python DecisionToken → Go hacp-sidecar
@@ -2475,6 +2522,7 @@ For the implementation record, see:
 
 - [`Integration with HACP Sidecar.md`](Integration%20with%20HACP%20Sidecar.md)
 - [`HACP Integration Verification Guide.md`](HACP%20Integration%20Verification%20Guide.md)
+- [`knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)
 
 > **Scope principle:** HACP has broad architectural scope, but intentionally narrow implementation ownership. It coordinates authority mechanisms; it does not seek to replace them.
 >

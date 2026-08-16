@@ -193,10 +193,6 @@ class TokenBuilder:
 
     def envelope(self, envelope: IntentEnvelope) -> "TokenBuilder":
         self._envelope = envelope
-        if self._expires_at is None:
-            self._expires_at = envelope.expires_at
-        if self._signer_key_id is None:
-            self._signer_key_id = envelope.signer_key_id
         return self
 
     def proposed_action(
@@ -330,14 +326,19 @@ class TokenBuilder:
             raise SchemaValidationError("proposed_action is required")
 
         now = int(time.time())
+
         if self._issued_at is None:
             self._issued_at = now
+
         if self._expires_at is None:
             self._expires_at = self._envelope.expires_at
+
         if self._token_id is None:
             self._token_id = str(uuid.uuid4())
+
         if self._signer_key_id is None:
             self._signer_key_id = self._envelope.signer_key_id
+
         if self._envelope.envelope_id is None:
             raise SchemaValidationError("envelope.envelope_id is required")
 
