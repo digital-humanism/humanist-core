@@ -4,14 +4,20 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   tests:
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     strategy:
       fail-fast: false
@@ -44,13 +50,14 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
 
-      - name: Run test suite
+      - name: Run full regression suite
         run: |
           python -m pytest tests/ -v -rs
 
-  coverage:
-    name: Coverage gate
+  hacp-conformance:
+    name: HACP-Core v0.9.2 conformance — 38 vectors
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     env:
       HACP_SPEC_REPO: ${{ github.workspace }}/hacp-spec
@@ -76,7 +83,40 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
 
-      - name: Run coverage gate
+      - name: Run canonical HACP-Core vector conformance
+        run: |
+          python -m pytest tests/conformance/test_core_vectors.py -v -rs
+
+  coverage:
+    name: 100% statement + branch coverage
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      HACP_SPEC_REPO: ${{ github.workspace }}/hacp-spec
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Checkout HACP specification
+        uses: actions/checkout@v5
+        with:
+          repository: digital-humanism/hacp-spec
+          path: hacp-spec
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run 100% coverage gate
         run: |
           python -m pytest tests/ \
             --cov=humanist_core \

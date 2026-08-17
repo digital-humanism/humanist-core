@@ -41,3 +41,5 @@ __pycache__/
 # Local HACP test keys
 tests/hacp-test-key.pem
 *.key
+# Local integration-test material
+.local/
