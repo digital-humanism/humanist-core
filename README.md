@@ -245,19 +245,23 @@ The calculator models risk exposure, false-positive review cost, payback, breake
 
 Its outputs should be interpreted as scenario/model results rather than universal empirical performance claims.
 
-**## Test and Verification Baseline
+## Test and Verification Baseline
 
 Current validated Python baseline:
 
 ```text
 HACP-Core v0.9.2 normative vectors:   38 / 38 PASS
 Conformance test suite:               44 passed
-Full collected test suite:            323 tests
-Passed:                               318
-External sidecar E2E skipped:           5
+Full collected test suite:            324 tests
+Standard local run:                   319 passed / 5 external-sidecar tests conditionally skipped
+External sidecar E2E:                   5 / 5 PASS
+External-sidecar enabled full run:    324 passed / 0 skipped
 Failed:                                 0
 Warnings:                               0
 Missed statements:                      0
+Partial branches:                       0
+Statement coverage:                   100%
+Branch coverage:                      100%
 ```
 
 The five skipped tests belong to the real external `hacp-sidecar` E2E layer. They require a running Go sidecar and configured local test signing identity. They are intentionally skipped when the external E2E environment is not enabled.

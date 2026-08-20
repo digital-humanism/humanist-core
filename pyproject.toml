@@ -8,7 +8,7 @@ version = "0.5.0rc1"
 description = "Digital Humanism SDK - Human Agency Continuity Protocol"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "AGPL-3.0-or-later"}
+license = "AGPL-3.0-or-later"
 
 authors = [
     {name = "Digital Humanism Team"}
@@ -22,9 +22,8 @@ keywords = [
 ]
 
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -51,6 +50,12 @@ dev = [
 
 [project.scripts]
 humanist = "humanist_core.hacp.cli:cli"
+
+[project.urls]
+Homepage = "https://github.com/digital-humanism/humanist-core"
+Repository = "https://github.com/digital-humanism/humanist-core"
+Issues = "https://github.com/digital-humanism/humanist-core/issues"
+Documentation = "https://github.com/digital-humanism/humanist-core#readme"
 
 [tool.setuptools.packages.find]
 where = ["."]

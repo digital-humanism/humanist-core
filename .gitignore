@@ -26,6 +26,8 @@ safe_harbor_chain.jsonl
 
 # Python build metadata
 *.egg-info/
+build/
+dist/
 
 # Coverage
 .coverage
