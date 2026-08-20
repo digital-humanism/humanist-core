@@ -313,7 +313,7 @@ Prefer:
 over developer-specific paths such as:
 
 ```text
-C:\Users\<name>\...\humanist-core
+...\GitHub\Dev\humanist-core
 ```
 
 or other workstation-specific repository roots.

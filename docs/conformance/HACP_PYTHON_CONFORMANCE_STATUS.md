@@ -48,12 +48,12 @@ The complete `humanist-core` test suite was run after the conformance implementa
 Latest verified full-suite result:
 
 ```text
-318 passed
+324 passed
 5 skipped
 0 failed
 ```
 
-The five skipped tests are the external HACP sidecar integration tests and require an explicitly running sidecar and test-key environment variables.
+The five skipped tests are external real-sidecar E2E integration tests. They require an explicitly running HACP sidecar and the corresponding test-key environment variables. When external E2E execution is enabled, they are verified separately against the real Go sidecar and currently pass 5/5.
 
 No existing unit, integration, hardening, provenance, boundary, LangChain, CLI, crypto or builder tests regressed.
 
@@ -81,10 +81,9 @@ The corresponding fixes/tests were prepared:
 1. empty checkpoint state must continue through the evaluator;
 2. the empty-ledger branch in `_get_last_hash()` is written as a normal multiline `if`.
 
-**Important:** run the final coverage command once more after those two changes.  
-Do not claim 100% branch coverage until that final run reports `BrPart 0`.
+The final coverage run reports `BrPart 0`; the current checked-in Python suite therefore reaches 100% branch coverage.
 
-Expected final target:
+Verified final result:
 
 ```text
 Miss    0

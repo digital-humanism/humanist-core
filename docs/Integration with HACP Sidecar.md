@@ -1295,7 +1295,7 @@ ALLOW
 
 The integration introduced no regression into the existing internal core.
 
-The current default Python suite collects 216 tests and reports 211 passed, 5 external-sidecar E2E tests conditionally skipped, 0 warnings, and 100% statement coverage (1336 statements, 0 missed).
+The current default Python suite reports 324 passed, 5 external real-sidecar E2E tests conditionally skipped, and 0 failed. The checked-in suite reaches 100% statement coverage and 100% branch coverage (`BrPart 0`). When external E2E execution is enabled, the real Python ↔ Go sidecar integration tests pass 5/5.
 
 Therefore, `humanist-core` now has not only an internal HACP SDK, but also experimentally verified cross-language interoperability with the real Go implementation of `hacp-sidecar`.
 

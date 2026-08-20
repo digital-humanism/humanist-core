@@ -93,7 +93,7 @@ class TestProvenanceGraphIntegrity:
         )
         graph.append(mid)
 
-        # leaf ссылается и на root, и на mid (который сам происходит от root)
+        # leaf references both root and mid, while mid itself descends from root.
         leaf = graph.new_event(
             event_type="tool_result", actor="agent", payload={},
             parents=[root.event_id, mid.event_id],
@@ -103,7 +103,7 @@ class TestProvenanceGraphIntegrity:
         ancestors = graph.ancestors(leaf.event_id)
         ancestor_ids = [e.event_id for e in ancestors]
 
-        # Общий предок встречается ровно один раз (dedup через continue)
+        # The shared ancestor appears exactly once due to deduplication.
         assert ancestor_ids.count(root.event_id) == 1
         assert set(ancestor_ids) == {root.event_id, mid.event_id}
 

@@ -12,13 +12,12 @@ The current checked-in Python implementation has completed its initial
 verification baseline:
 
 ```text
-Collected tests:                     216
-Passed:                              211
-External-sidecar E2E skipped:          5
-Warnings:                              0
-Statements:                         1336
-Missed statements:                     0
-Statement coverage:                  100%
+- 324 passed
+- 5 external-sidecar E2E tests conditionally skipped
+- 0 failed
+- 100% statement coverage
+- 100% branch coverage (`BrPart 0`)
+- external real-sidecar E2E: 5/5 PASS
 ````
 
 The five skipped tests belong to the real external `hacp-sidecar` E2E layer and
@@ -2494,12 +2493,12 @@ Implemented in humanist-core:
 - Python HACP SDK
 
 Verification baseline:
-- 211 passed
+- 324 passed
 - 5 external-sidecar E2E tests conditionally skipped
-- 0 warnings
-- 1336 statements
-- 0 missed
-- 100% Python statement coverage
+- 0 failed
+- 100% statement coverage
+- 100% branch coverage (`BrPart 0`)
+- external real-sidecar E2E: 5/5 PASS
 
 Cross-language interoperability verified:
 - Python IntentEnvelope → Go hacp-sidecar

@@ -4,8 +4,9 @@
 **Component:** `humanist-core / humanist_core.hacp`  
 **Document role:** Public knowledge-base / verification record  
 **Reference test platform:** Windows, Python 3.13.14, pytest 9.1.1  
-**Reference result:** `211 passed, 5 skipped, 0 warnings`  
-**Coverage result:** `1336 statements, 0 missed, 100%`
+**Reference result:** `324 passed, 5 external-sidecar E2E tests conditionally skipped, 0 failed`
+**Coverage result:** `100% statement coverage, 100% branch coverage (BrPart 0)`
+**External real-sidecar E2E:** `5/5 PASS`
 
 ---
 
@@ -99,12 +100,12 @@ The hardening sequence progressed through:
 The final reference run reports:
 
 ```text
-211 passed
-5 skipped
-0 warnings
-1336 statements
-0 missed
+324 passed
+5 external-sidecar E2E tests conditionally skipped
+0 failed
 100% statement coverage
+100% branch coverage (BrPart 0)
+external real-sidecar E2E: 5/5 PASS
 ```
 
 ---
@@ -456,7 +457,12 @@ pytest tests\ --cov=humanist_core --cov-report=term-missing
 Reference result:
 
 ```text
-211 passed, 5 skipped
+324 passed
+5 external-sidecar E2E tests conditionally skipped
+0 failed
+100% statement coverage
+100% branch coverage (BrPart 0)
+external real-sidecar E2E: 5/5 PASS
 ```
 
 Coverage:
@@ -489,9 +495,9 @@ TOTAL                                           100%
 Totals:
 
 ```text
-1336 statements
-0 missed
+0 missed statements
 100% statement coverage
+100% branch coverage (BrPart 0)
 ```
 
 ---
@@ -748,13 +754,15 @@ cd ...\GitHub\Dev\humanist-core
 pytest tests\ --cov=humanist_core --cov-report=term-missing
 ```
 
-Expected reference characteristics:
+Verified reference characteristics:
 
 ```text
-211 passed
-5 external-sidecar tests skipped when external E2E is not enabled
-0 warnings
+324 passed
+5 external-sidecar E2E tests conditionally skipped
+0 failed
 100% statement coverage
+100% branch coverage (BrPart 0)
+external real-sidecar E2E: 5/5 PASS
 ```
 
 External E2E requires the Go sidecar environment and local test key material.
@@ -768,12 +776,12 @@ No workstation-specific username, private path, or private signing key should ap
 The completed hardening phase establishes the following Python baseline:
 
 ```text
-211 passed
-5 external E2E tests conditionally skipped
-0 warnings
-1336 statements
-0 missed
+324 passed
+5 external-sidecar E2E tests conditionally skipped
+0 failed
 100% statement coverage
+100% branch coverage (BrPart 0)
+external real-sidecar E2E: 5/5 PASS
 ```
 
 The HACP SDK modules currently report:

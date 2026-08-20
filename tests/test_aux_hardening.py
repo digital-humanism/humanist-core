@@ -49,7 +49,7 @@ from humanist_core.loop_breaker import AgencyGuardV2, DigitalBlockAnalyzer
 from humanist_core.safe_harbor import IntentRecord, SafeHarborLedger
 
 
-# ... (тесты safe_harbor, что уже есть) ...
+
 
 
 class TestDigitalBlockAnalyzerFallbacks:

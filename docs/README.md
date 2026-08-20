@@ -271,10 +271,12 @@ pytest tests/ --cov=humanist_core --cov-report=term-missing
 Current reference result:
 
 ```text
-211 passed, 5 skipped
-1336 statements, 0 missed
+324 passed
+5 external-sidecar E2E tests conditionally skipped
+0 failed
 100% statement coverage
-0 warnings
+100% branch coverage (BrPart 0)
+external real-sidecar E2E: 5/5 PASS
 ```
 
 ### External Go sidecar E2E

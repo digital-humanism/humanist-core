@@ -38,7 +38,8 @@ The repository contains both the original experimental prototype and the current
 | HACP Phase 5 — Evaluation Framework | ✅ Implemented and tested |
 | Python HACP SDK | ✅ Implemented |
 | Python HACP SDK conformance | ✅ HACP-Core v0.9.2 — 38/38 normative vectors PASS |
-| Python SDK full regression suite | ✅ 318 passed / 5 external-sidecar tests skipped / 0 failed |
+| Python SDK full regression suite | ✅ 324 passed / 5 external-sidecar tests conditionally skipped / 0 failed |
+| Python ↔ Go sidecar E2E | ✅ 5/5 PASS |
 | Python ↔ Go sidecar wire interoperability | ✅ Verified |
 | Signed `IntentEnvelope` + `DecisionToken` → real sidecar `ALLOW` | ✅ Verified |
 | Full HACP v2.0 reference implementation | 🚧 In progress |
@@ -305,7 +306,7 @@ Detailed status and reproducibility notes are maintained in:
 
 All checked-in Python statements are currently exercised (`0` missed statements). Branch hardening is also enforced in the CI configuration through `--cov-branch`.
 
-The latest recorded local run has two remaining partial branch arcs, so **100% branch coverage must not be claimed until the final coverage run reports `BrPart 0`**.
+The current checked-in Python test suite reaches **100% statement coverage and 100% branch coverage** (`BrPart 0`).
 
 This result is treated as a **regression and reproducibility baseline, not as a security proof**.
 

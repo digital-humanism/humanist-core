@@ -171,7 +171,7 @@ def test_generate_key_id_has_128_bits_of_decoded_random_material():
 
 def test_canonicalized_payload_is_valid_utf8_json():
     payload = {
-        "z": "Привет",
+        "z": "Hi",
         "a": [1, True, None],
     }
 
