@@ -2,7 +2,7 @@
 
 **\*\*Status:\*\*** proposal / roadmap  
 **\*\*Target architecture:\*\*** HACP / Architecture v2.0  
-**\*\*Current implementation:\*\*** humanist-core 0.5.0-alpha + verified HACP wire v0.9 interoperability  
+**\*\*Current implementation:\*\*** humanist-core 0.5.0rc1 + verified HACP wire v0.9 interoperability  
 **\*\*Purpose:\*\*** define the boundary between the current model-validation stage and the future production-grade completion milestone called Humanist Core 2.0.
 
 **---**
@@ -12,7 +12,7 @@
 The project currently has three independent version dimensions:
 
 \`\`\`text
-humanist-core package version   → 0.x / 0.5.0-alpha today
+humanist-core package version   → 0.x / 0.5.0rc1 today
 HACP wire protocol version      → v0.9 today
 HACP Architecture version       → v2.0 — current target architecture
 \`\`\`

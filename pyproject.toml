@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "humanist-core"
-version = "0.5.0-alpha"
+version = "0.5.0rc1"
 description = "Digital Humanism SDK - Human Agency Continuity Protocol"
 readme = "README.md"
 requires-python = ">=3.10"

@@ -333,7 +333,7 @@ future production-hardening milestones
 Current terminology:
 
 ```text
-humanist-core package:        0.5.0-alpha
+humanist-core package:        0.5.0rc1
 architecture target:          HACP v2.0
 current wire interoperability: HACP v0.9
 development stage:            Model Validation
