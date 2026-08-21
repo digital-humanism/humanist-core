@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
 
-****Version:**** 0.5.0rc1
+****Version:**** 0.5.0
 ****License:**** AGPL-3.0-or-later  
 ****Architecture:**** Human Agency Continuity Protocol (HACP) v2.0  
 ****Current wire interoperability:**** HACP v0.9  

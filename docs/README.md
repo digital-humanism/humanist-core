@@ -2,13 +2,13 @@
 
 | Domain | Version |
 |---|---|
-| Python package | `humanist-core 0.5.0rc1` |
+| Python package | `humanist-core 0.5.0` |
 | HACP specification release | `0.9.3` |
 | HACP-Core conformance baseline | `0.9.2` |
 | Wire protocol family | `0.9` |
 | Architecture generation | `v2.0` |
 
-These versions belong to separate domains and MUST NOT be conflated. The `humanist-core` package currently implements and validates against the HACP-Core `0.9.2` canonical baseline, interoperates over the HACP `0.9` wire family, and is released as Python package `0.5.0rc1`. The broader architectural generation remains identified as `v2.0`.
+These versions belong to separate domains and MUST NOT be conflated. The `humanist-core` package currently implements and validates against the HACP-Core `0.9.2` canonical baseline, interoperates over the HACP `0.9` wire family, and is released as Python package `0.5.0`. The broader architectural generation remains identified as `v2.0`.
 
 # Humanist Core Documentation
 
@@ -51,7 +51,7 @@ If you are new to the project, read these documents in order:
 - **Architecture target:** Human Agency Continuity Protocol (HACP) v2.0
 - **Current wire interoperability:** HACP v0.9
 - **Current development stage:** Model Validation
-- **Humanist Core package version:** 0.5.0rc1
+- **Humanist Core package version:** 0.5.0
 
 The architecture target and the current wire version are intentionally separate concepts.
 
