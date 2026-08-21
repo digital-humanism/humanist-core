@@ -1,6 +1,7 @@
-**# humanist-core SDK**
+# humanist-core SDK
 
-![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)
+[![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml)
+[![release](https://img.shields.io/github/v/release/digital-humanism/humanist-core?label=release)](https://github.com/digital-humanism/humanist-core/releases/latest)
 
 ****Version:**** 0.5.0
 ****License:**** AGPL-3.0-or-later  
