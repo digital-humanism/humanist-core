@@ -8,6 +8,12 @@
 ****Current wire interoperability:**** HACP v0.9  
 ****Based on:**** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
+**HACP ecosystem:**
+- [HACP Specification](https://github.com/digital-humanism/hacp-spec) — normative protocol, schemas, conformance vectors, and security semantics.
+- [hacp-sidecar](https://github.com/digital-humanism/hacp-sidecar) — Go fail-closed enforcement sidecar and distributed control-plane implementation.
+
+The Digital Humanism Manifesto defines the broader human-centered principles. HACP is one concrete technical realization of selected principles, while `humanist-core` provides the Python SDK and reference implementation layer within that ecosystem.
+
 **## Project Goal**
 
 `humanist-core` is an SDK for implementing Digital Humanism protocols in LLM and autonomous-agent frameworks.
