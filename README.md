@@ -100,7 +100,6 @@ The E2E integration verifies:
 See:
 
 - [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md)
-- [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md)
 - [`docs/README.md`](docs/README.md)
 
 For the current Python SDK verification baseline, normative conformance status, negative-path coverage, and assurance limitations, see:
@@ -370,7 +369,7 @@ See:
 
 - [`docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md`](docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md) — HACP-Core v0.9.2 Python conformance status;
 - [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md) — detailed verification and security-hardening record;
-- [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md) — operational external-sidecar verification procedure.
+- [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — operational external-sidecar verification procedure.
 
 ## Quick Start**
 
@@ -398,7 +397,7 @@ from humanist_core.hacp import (
 
 For real sidecar integration, follow:
 
-[`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md)
+[`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md)
 
 **## Documentation**
 
@@ -410,8 +409,7 @@ Key documents:
 - [`docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md`](docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md) — current Python HACP-Core v0.9.2 conformance status, 38/38 vector baseline, CI and coverage verification;
 - [`docs/HUMANIST_CORE_2.0_ROADMAP.md`](docs/HUMANIST_CORE_2.0_ROADMAP.md) — roadmap from model validation to production-grade Humanist Core 2.0;
 - [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md) — reproducible Python SDK verification baseline, security hardening, negative-path testing, coverage methodology, and assurance limitations;
-- [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — implementation and interoperability record;
-- [`docs/HACP Integration Verification Guide.md`](docs/HACP%20Integration%20Verification%20Guide.md) — operational verification procedure;
+- [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — implementation, interoperability, and operational verification record;
 - [`docs/REVIEW_en.md`](docs/REVIEW_en.md) — independent review;
 - `docs/ARCHITECTURE_v0.1.md` — legacy prototype architecture after migration.
 
