@@ -87,6 +87,37 @@ jobs:
         run: |
           python -m pytest tests/conformance/test_core_vectors.py -v -rs
 
+  hacp-enforcement-conformance:
+    name: HACP-Enforcement revision 2 conformance — HC2-55
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      HACP_SPEC_REPO: ${{ github.workspace }}/hacp-spec
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check out hacp-spec
+        uses: actions/checkout@v5
+        with:
+          repository: digital-humanism/hacp-spec
+          ref: 3ea4adcbf6ef2548e41d340709945326026a73b6
+          path: hacp-spec
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run HACP-Enforcement revision 2 HC2-55 conformance
+        run: |
+          python -m pytest tests/conformance/test_enforcement_v2_vectors.py -v -rs
   coverage:
     name: 100% statement + branch coverage
     runs-on: ubuntu-latest

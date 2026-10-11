@@ -5,6 +5,11 @@
 | Python package | `humanist-core 0.5.0` |
 | HACP specification release | `0.9.3` |
 | HACP-Core conformance baseline | `0.9.2` |
+| HACP-Enforcement conformance profile | `revision 2 / HC2-55` |
+| Rust reference package | `hacp-rs 0.1.1` |
+| Rust placement | `REFERENCE_ONLY` |
+| Controlled admission branch | `admit/hacp-rs` |
+| HACP 1.1.1 pre-release composition binding | `HACP-1.1.1-spec-3ea4adc-sidecar-1bc10ac` |
 | Wire protocol family | `0.9` |
 | Architecture generation | `v2.0` |
 
@@ -33,7 +38,16 @@ If you are new to the project, read these documents in order:
 3. [`HUMANIST_CORE_2.0_ROADMAP.md`](HUMANIST_CORE_2.0_ROADMAP.md)  
    Roadmap from the current model-validation phase to production-grade Humanist Core 2.0.
 
-4. [`knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)  
+4. [`conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md`](conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md)
+   Independently reported HACP-Core and HC2 Family-A conformance evidence.
+
+5. [`compatibility/HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md`](compatibility/HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md)
+   Version, source, evidence, activation, and compatibility identity matrix.
+
+6. [`compatibility/HACP_COMPOSITION_PROFILE.md`](compatibility/HACP_COMPOSITION_PROFILE.md)
+   Controlled-admission composition profile and Rust reference placement.
+
+7. [`knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)
    Detailed and reproducible verification record for the Python HACP SDK.
 
 5. [`Integration with HACP Sidecar.md`](Integration%20with%20HACP%20Sidecar.md)  
