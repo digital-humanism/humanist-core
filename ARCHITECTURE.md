@@ -71,6 +71,18 @@ Legacy prototype trust model:
     + fixed hop counting
 ```
 
+## Version, Evidence, and Composition Identity
+
+Architecture generation is intentionally separate from package version, wire version, conformance profile, implementation source identity, evidence result, activation state, and release composition.
+
+The controlled HACP conformance and compatibility records are:
+
+- [`docs/conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md`](docs/conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md)
+- [`docs/compatibility/HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md`](docs/compatibility/HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md)
+- [`docs/compatibility/HACP_COMPOSITION_PROFILE.md`](docs/compatibility/HACP_COMPOSITION_PROFILE.md)
+
+The Rust `hacp-rs` implementation is represented here only through reference/conformance identity. It is not a Humanist Core production runtime backend.
+
 ## Implementation and Verification
 
 For the implemented Python ↔ Go integration, see:

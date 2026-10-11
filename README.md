@@ -45,6 +45,7 @@ The repository contains both the original experimental prototype and the current
 | HACP Phase 5 — Evaluation Framework | ✅ Implemented and tested |
 | Python HACP SDK | ✅ Implemented |
 | Python HACP SDK conformance | ✅ HACP-Core v0.9.2 — 38/38 normative vectors PASS |
+| Python HACP Enforcement revision 2 conformance | ✅ HC2-55 — 55/55 request-binding vectors PASS |
 | Python SDK full regression suite | ✅ 324 passed / 5 external-sidecar tests conditionally skipped / 0 failed |
 | Python ↔ Go sidecar E2E | ✅ 5/5 PASS |
 | Python ↔ Go sidecar wire interoperability | ✅ Verified |
@@ -104,7 +105,10 @@ See:
 
 For the current Python SDK verification baseline, normative conformance status, negative-path coverage, and assurance limitations, see:
 
-- [`docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md`](docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md) — current HACP-Core v0.9.2 Python conformance status and reproducible verification record;
+- [`docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md`](docs/conformance/HACP_PYTHON_CONFORMANCE_STATUS.md) — historical/current HACP-Core v0.9.2 Python conformance record;
+- [`docs/conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md`](docs/conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md) — independently reported Core and HC2 Family-A evidence;
+- [`docs/compatibility/HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md`](docs/compatibility/HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md) — separated version, build, evidence, activation, and compatibility identities;
+- [`docs/compatibility/HACP_COMPOSITION_PROFILE.md`](docs/compatibility/HACP_COMPOSITION_PROFILE.md) — current controlled-admission composition profile;
 - [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)
 
 **## Roadmap**
@@ -197,7 +201,8 @@ crypto.py       JCS / Ed25519 / SHA-256 / Base64url
 client.py       SidecarClient
 exceptions.py   typed HACP reason-code mapping
 cli.py          command-line interface
-conformance.py  clean-room HACP-Core v0.9.2 conformance evaluator
+conformance.py                 clean-room HACP-Core v0.9.2 conformance evaluator
+conformance_enforcement_v2.py  additive HACP-Enforcement revision 2 HC2 evaluator
 ```
 
 The Python conformance evaluator is intentionally wire-dictionary based and separate from the SDK dataclass API. It is used for differential verification against the canonical `hacp-spec` vectors and currently passes the full **38/38 HACP-Core v0.9.2 normative vector set**.
