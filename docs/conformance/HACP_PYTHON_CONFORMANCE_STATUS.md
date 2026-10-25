@@ -210,21 +210,24 @@ The normative vector inventory remains:
 
 ## 7. Current implementation status
 
-| Implementation | HACP-Core v0.9.2 vectors | Status |
-|---|---:|---|
-| Python (`humanist-core`) | 38 / 38 | ✅ PASS |
-| TypeScript | pending | ⏳ |
-| Go | pending / to be revalidated against baked set | ⏳ |
+Current independently reportable HACP-Core evidence is:
 
-The next cross-language objective is to run the same canonical vector set against TypeScript and Go and confirm convergence of:
+| Implementation | HACP-Core evidence |
+|---|---|
+| Go | 38/38 PASS |
+| TypeScript | 38/38 PASS |
+| Python (`humanist-core`) | 38/38 PASS |
+| Rust | 36/38 direct PASS + 2 adjudicated conflicts |
 
-- decisions;
-- reason codes;
-- canonical bytes;
-- action hashes;
-- Ed25519 verification behavior;
-- checkpoint / provenance / revocation semantics.
+The Rust result MUST NOT be represented as `38/38 direct`.
 
+The current cross-language HACP-Core evidence is recorded in:
+
+```text
+docs/conformance/HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md
+```
+
+HACP-Core and HACP-Enforcement revision 2 / HC2-55 remain separate evidence surfaces and MUST NOT be collapsed into a synthetic combined score.
 ## 8. Final Python verification commands
 
 ### Conformance only
