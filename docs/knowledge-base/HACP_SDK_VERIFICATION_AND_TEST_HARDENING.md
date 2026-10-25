@@ -545,6 +545,8 @@ $env:HACP_TEST_SIGNER_KEY_ID="key-ed25519-test-001"
 
 Private key material itself must never be committed.
 
+> **Test-fixture exception:** `tests/hacp-test-key.pem` is the deterministic, test-only HACP conformance signing fixture associated with `key-ed25519-test-001`. It is intentionally public for exact test reproduction and MUST NOT be used as a production signing key.
+
 ---
 
 ## 13. What 100% coverage means
