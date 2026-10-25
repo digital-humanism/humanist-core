@@ -525,8 +525,8 @@ This distinction should remain visible in public documentation.
 Documentation should use machine-independent local paths:
 
 ```text
-...\GitHub\Dev\humanist-core
-...\GitHub\Dev\hacp-sidecar
+<workspace>\humanist-core
+<workspace>\hacp-sidecar
 ```
 
 and should not publish workstation-specific user profile paths.
@@ -534,12 +534,12 @@ and should not publish workstation-specific user profile paths.
 Example:
 
 ```powershell
-cd ...\GitHub\Dev\humanist-core
+Set-Location '<humanist-core-repository-root>'
 .\.venv\Scripts\Activate.ps1
 
 $env:HACP_SIDECAR_EXTERNAL="1"
 $env:HACP_SIDECAR_URL="http://127.0.0.1:8080"
-$env:HACP_TEST_PRIVATE_KEY="...\GitHub\Dev\humanist-core\tests\hacp-test-key.pem"
+$env:HACP_TEST_PRIVATE_KEY = Join-Path (Get-Location) 'tests\hacp-test-key.pem'
 $env:HACP_TEST_SIGNER_KEY_ID="key-ed25519-test-001"
 ```
 
@@ -748,7 +748,7 @@ The roadmap reference should describe this work as an achieved baseline, not as 
 A contributor should be able to reproduce the default verification with:
 
 ```powershell
-cd ...\GitHub\Dev\humanist-core
+Set-Location '<humanist-core-repository-root>'
 .\.venv\Scripts\Activate.ps1
 
 pytest tests\ --cov=humanist_core --cov-report=term-missing

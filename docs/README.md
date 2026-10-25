@@ -207,8 +207,8 @@ Provides the operational procedure for running the external E2E environment.
 Public documentation should use portable repository paths such as:
 
 ```text
-...\GitHub\Dev\humanist-core
-...\GitHub\Dev\hacp-sidecar
+<workspace>\humanist-core
+<workspace>\hacp-sidecar
 ```
 
 Do not publish:
@@ -357,8 +357,8 @@ Public documentation should use repository-relative or portable paths.
 Use:
 
 ```text
-...\GitHub\Dev\humanist-core
-...\GitHub\Dev\hacp-sidecar
+<workspace>\humanist-core
+<workspace>\hacp-sidecar
 ```
 
 Do not use workstation-specific paths.

@@ -303,20 +303,14 @@ Private key material must never be committed.
 
 Documentation should avoid machine-specific absolute paths.
 
-Prefer:
+Prefer repository placeholders:
 
 ```text
-...\GitHub\Dev\humanist-core
-...\GitHub\Dev\hacp-sidecar
+<workspace>\humanist-core
+<workspace>\hacp-sidecar
 ```
 
-over developer-specific paths such as:
-
-```text
-...\GitHub\Dev\humanist-core
-```
-
-or other workstation-specific repository roots.
+over developer-specific or workstation-specific repository roots.
 
 When commands are platform-specific, state the shell/platform explicitly.
 
