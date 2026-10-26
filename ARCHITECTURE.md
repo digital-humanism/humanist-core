@@ -37,7 +37,7 @@ The repository currently implements and tests:
 
 A signed Python `IntentEnvelope` + `DecisionToken` request has been verified end-to-end against the real Go sidecar and reaches `ALLOW`.
 
-The full HACP v2.0 reference implementation remains in progress.
+The full Humanist Core Architecture v2.0 reference implementation remains in progress.
 
 ## Legacy Prototype Architecture
 
@@ -74,6 +74,9 @@ Legacy prototype trust model:
 ## Version, Evidence, and Composition Identity
 
 Architecture generation is intentionally separate from package version, wire version, conformance profile, implementation source identity, evidence result, activation state, and release composition.
+
+The current HACP release composition is `1.1.1` — **pre-release candidate**.
+The approved stable HACP release remains `1.1.0`.
 
 The controlled HACP conformance and compatibility records are:
 
