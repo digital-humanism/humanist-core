@@ -11,7 +11,7 @@ PRODUCTION_ACTIVATION_CHANGE=NO
 
 This profile records the Humanist Core `admit/hacp-1.1.1-pre-release` controlled-admission state.
 
-It binds the verified Humanist Core Stage-1 admission payload to the exact immutable HACP 1.1.1 pre-release composition. It does not establish stable-release or production-activation status.
+It associates the verified Humanist Core Stage-1 admission payload with the HACP 1.1.1 release train and its active mutable release candidate. It does not establish stable-release or production-activation status.
 
 ## Humanist Core identity
 
@@ -70,17 +70,21 @@ rust.production_activation_in_humanist_core=NO
 
 A separate Rust source commit is not invented by this Stage-1 profile.
 
-## HACP 1.1.1 pre-release composition binding
+## HACP 1.1.1 release-train binding
 
-`	ext
+```text
 hacp.release=1.1.1
-hacp.composition_id=HACP-1.1.1-spec-3ea4adc-sidecar-1bc10ac
-hacp.spec_commit=3ea4adcbf6ef2548e41d340709945326026a73b6
-hacp.sidecar_implementation_commit=1bc10acbe79620a165cee573c5b260cd8639280f
+hacp.release_candidate=1.1.1-rc.1
+hacp.release_candidate_state=MUTABLE
+hacp.final_release_tag=v1.1.1
+hacp.final_release_tag_state=IMMUTABLE
 hacp.lifecycle_target=hacp-1.1.1-pre-release
-`
+```
 
-This exact immutable target composition is bound to the verified Humanist Core Stage-1 payload.
+The active HACP 1.1.1 release candidate is a mutable working candidate.
+
+Concrete repository commit SHA values remain factual evidence identities for specific verification runs.
+They are not manually maintained cross-repository release-composition bindings.
 
 This binding does not change the Humanist Core package version, wire family, architecture generation, production request path, or Rust reference-only placement.
 
