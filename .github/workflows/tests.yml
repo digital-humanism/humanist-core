@@ -102,7 +102,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: digital-humanism/hacp-spec
-          ref: 3ea4adcbf6ef2548e41d340709945326026a73b6
+          ref: admit/hacp-1.1.1-pre-release
           path: hacp-spec
 
       - name: Set up Python

@@ -34,12 +34,13 @@ architecture generation
 | Rust placement | `REFERENCE_ONLY` |
 | Humanist Core Stage-1 admission commit | `4ff4b00bd7387466e22973e6097f1ab18f5b8f9d` |
 | HACP release target | `1.1.1` |
-| HACP composition ID | `HACP-1.1.1-spec-3ea4adc-sidecar-1bc10ac` |
-| HACP spec commit | `3ea4adcbf6ef2548e41d340709945326026a73b6` |
-| Sidecar implementation commit | `1bc10acbe79620a165cee573c5b260cd8639280f` |
+| HACP active release candidate | `1.1.1-rc.1` |
+| Release candidate state | `MUTABLE` |
+| Final release tag | `v1.1.1` |
+| Final release tag state | `IMMUTABLE` |
 | Lifecycle target | `hacp-1.1.1-pre-release` |
 
-The branch name is workflow state, not an immutable composition identity.
+Repository commit SHA values remain factual evidence identities for concrete verification runs; they are not manually maintained cross-repository release-composition bindings.
 
 ## Evidence
 
@@ -87,26 +88,27 @@ The controlled `admit/hacp-1.1.1-pre-release` stage preserves:
 - additive direct Python HC2-55 conformance;
 - reference-only Rust placement.
 
-It additionally binds the verified Humanist Core Stage-1 payload to the immutable HACP 1.1.1 pre-release composition:
+It additionally associates the verified Humanist Core Stage-1 payload with the HACP 1.1.1 release train:
 
 ```text
-HACP-1.1.1-spec-3ea4adc-sidecar-1bc10ac
+HACP_RELEASE=1.1.1
+HACP_RELEASE_CANDIDATE=1.1.1-rc.1
+RC=MUTABLE
+FINAL_RELEASE_TAG=v1.1.1
+FINAL_RELEASE_TAG_STATE=IMMUTABLE
 ```
 
-This is a pre-release composition binding only. It does not establish stable-release status or production-runtime activation.
+This is a pre-release release-candidate association only. It does not establish stable-release status or production-runtime activation.
 
-## Immutable identity rule
+## Release identity rule
 
-Production or release profiles MUST use explicit immutable identities.
+The active `1.1.1-rc.1` release candidate is mutable.
 
-The following are not valid immutable source pins:
+The final `v1.1.1` release tag is immutable and MUST NOT be moved or rewritten.
 
-```text
-latest
-current
-HEAD
-main
-origin/main
-```
+Concrete Git commit SHA values used by verification runs are recorded as factual evidence identities.
+They MUST NOT be maintained as cyclic cross-repository release-composition bindings.
 
-Branch names may describe workflow state but MUST NOT replace immutable commit identities in a release composition.
+Floating names such as `latest`, `current`, `HEAD`, `main`, or `origin/main` are not final release identities.
+
+The exact Git representation of the mutable `1.1.1-rc.1` candidate is defined separately at the release-candidate representation checkpoint.
