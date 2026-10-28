@@ -1,19 +1,18 @@
 # humanist-core SDK
 
 [![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml)
-![release](https://img.shields.io/badge/release-1.1.1--rc.1-orange)
+![release](https://img.shields.io/badge/release-1.1.1-brightgreen)
 
 **SDK version:** 0.5.0  
 **License:** AGPL-3.0-or-later  
 **Architecture target:** Humanist Core / HACP v2.0  
 **Current wire interoperability:** HACP v0.9  
-**Current HACP release line:** 1.1.1-rc.1 — verified pre-release candidate  
-**Approved stable HACP release:** 1.1.0  
+**Current HACP release:** 1.1.1 — stable  
 **HACP-Core conformance baseline:** 0.9.2  
 **Active Enforcement profile:** HACP-Enforcement revision 2  
 **Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
 
-Current HACP 1.1.1-rc.1 verification composition:
+Current HACP 1.1.1 verification composition:
 
 ```text
 HACP-Core                        38/38 PASS
@@ -26,8 +25,7 @@ functional RED                   0
 technical release blockers       0
 ```
 
-The SDK package identity remains `0.5.0`; HACP `1.1.1-rc.1` identifies the
-current verified ecosystem release composition rather than a replacement SDK version.
+The SDK package identity remains `0.5.0`; HACP `1.1.1` identifies the current stable ecosystem release composition rather than a replacement SDK version.
 
 **HACP ecosystem:**
 - [HACP Specification](https://github.com/digital-humanism/hacp-spec) — normative protocol, schemas, conformance vectors, and security semantics.
