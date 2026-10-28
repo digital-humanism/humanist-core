@@ -3,11 +3,31 @@
 [![tests](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml/badge.svg)](https://github.com/digital-humanism/humanist-core/actions/workflows/tests.yml)
 [![release](https://img.shields.io/github/v/release/digital-humanism/humanist-core?label=release)](https://github.com/digital-humanism/humanist-core/releases/latest)
 
-****Version:**** 0.5.0
-****License:**** AGPL-3.0-or-later  
-****Architecture:**** Human Agency Continuity Protocol (HACP) v2.0  
-****Current wire interoperability:**** HACP v0.9  
-****Based on:**** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
+**SDK version:** 0.5.0
+**License:** AGPL-3.0-or-later
+**Architecture target:** Humanist Core / HACP v2.0
+**Current wire interoperability:** HACP v0.9
+**Current HACP release line:** 1.1.1-rc.1 — verified pre-release candidate
+**Approved stable HACP release:** 1.1.0
+**HACP-Core conformance baseline:** 0.9.2
+**Active Enforcement profile:** HACP-Enforcement revision 2
+**Based on:** [The Digital Humanism Manifesto](https://github.com/digital-humanism/manifesto)
+
+Current HACP 1.1.1-rc.1 verification composition:
+
+```text
+HACP-Core                         38/38 PASS
+HC2                              55/55 PASS
+Python regression                382 passed / 5 repository-defined skips
+Statement coverage               100%
+Branch coverage                  100%
+three-repository clean clone     PASS
+functional RED                   0
+technical release blockers       0
+```
+
+The SDK package identity remains `0.5.0`; HACP `1.1.1-rc.1` identifies the
+current verified ecosystem release composition rather than a replacement SDK version.
 
 **HACP ecosystem:**
 - [HACP Specification](https://github.com/digital-humanism/hacp-spec) — normative protocol, schemas, conformance vectors, and security semantics.
@@ -15,7 +35,7 @@
 
 The Digital Humanism Manifesto defines the broader human-centered principles. HACP is one concrete technical realization of selected principles, while `humanist-core` provides the Python SDK and reference implementation layer within that ecosystem.
 
-**## Project Goal**
+## Project Goal
 
 `humanist-core` is an SDK for implementing Digital Humanism protocols in LLM and autonomous-agent frameworks.
 
@@ -31,7 +51,7 @@ The current implementation combines:
 - HACP wire-level interoperability with the Go `hacp-sidecar`;
 - evaluation and benchmarking tools.
 
-**## Architecture Status**
+## Architecture Status
 
 The repository contains both the original experimental prototype and the current HACP architecture.
 
@@ -46,7 +66,7 @@ The repository contains both the original experimental prototype and the current
 | Python HACP SDK | ✅ Implemented |
 | Python HACP SDK conformance | ✅ HACP-Core v0.9.2 — 38/38 normative vectors PASS |
 | Python HACP Enforcement revision 2 conformance | ✅ HC2-55 — 55/55 request-binding vectors PASS |
-| Python SDK full regression suite | ✅ 324 passed / 5 external-sidecar tests conditionally skipped / 0 failed |
+| Python SDK full regression suite | ✅ 382 passed / 5 repository-defined skips / 0 failed |
 | Python ↔ Go sidecar E2E | ✅ 5/5 PASS |
 | Python ↔ Go sidecar wire interoperability | ✅ Verified |
 | Signed `IntentEnvelope` + `DecisionToken` → real sidecar `ALLOW` | ✅ Verified |
@@ -57,7 +77,7 @@ The current architectural target is documented in [`docs/ARCHITECTURE_v2.0.md`](
 
 The original prototype architecture is retained as historical context in `docs/ARCHITECTURE_v0.1.md`.
 
-**## HACP Sidecar Integration**
+## HACP Sidecar Integration
 
 `humanist-core` now includes a Python HACP SDK under:
 
@@ -111,13 +131,18 @@ For the current Python SDK verification baseline, normative conformance status, 
 - [`docs/compatibility/HACP_COMPOSITION_PROFILE.md`](docs/compatibility/HACP_COMPOSITION_PROFILE.md) — current controlled-admission composition profile;
 - [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md)
 
-**## Roadmap**
+## Roadmap
 
-Humanist Core is currently in the ****model validation**** stage.
+The HACP 1.1.x line provides the current verified release composition used by
+`humanist-core` for protocol interoperability and conformance.
 
-The current focus is on validating the HACP authority model, Action Boundaries, Semantic Checkpoints, Autonomy Budgets, and cross-language interoperability before freezing the protocol surface for production use.
+Humanist Core 2.0 remains a forward architecture and production-hardening roadmap.
+It is not the current HACP release identity and does not replace the frozen SDK
+package identity described above.
 
-The planned ****Humanist Core 2.0**** milestone is focused on technological completion rather than expansion of scope. Its purpose is to close the production and protocol-hardening gaps around the current model, including:
+The planned **Humanist Core 2.0** milestone is focused on technological completion
+rather than expansion of scope. Its purpose is to close production and protocol-
+hardening gaps around the current model, including:
 
 - human-governed authority roots and authority lineage;
 - mandatory attenuation for delegated authority;
@@ -138,7 +163,7 @@ See:
 
 - [`docs/HUMANIST_CORE_2.0_ROADMAP.md`](docs/HUMANIST_CORE_2.0_ROADMAP.md) — Humanist Core 2.0 technology-completion roadmap
 
-**## Core Components**
+## Core Components
 
 **### `authority.py` — HACP Authority Core**
 
@@ -217,7 +242,7 @@ They remain useful as experimental mechanisms and historical context, but the cu
 
 For the current trust model, see [`docs/ARCHITECTURE_v2.0.md`](docs/ARCHITECTURE_v2.0.md).
 
-**## Evaluation Framework**
+## Evaluation Framework
 
 The repository includes an evaluation framework for measuring:
 
@@ -244,7 +269,7 @@ Run the demo:
 python examples/evaluation_demo.py
 ```
 
-**## ROI Calculator**
+## ROI Calculator
 
 The repository also includes an enterprise ROI modeling tool:
 
@@ -258,24 +283,24 @@ Its outputs should be interpreted as scenario/model results rather than universa
 
 ## Test and Verification Baseline
 
-Current validated Python baseline:
+Current HACP 1.1.1-rc.1 clean-clone verification:
 
 ```text
 HACP-Core v0.9.2 normative vectors:   38 / 38 PASS
-Conformance test suite:               44 passed
-Full collected test suite:            324 tests
-Standard local run:                   319 passed / 5 external-sidecar tests conditionally skipped
-External sidecar E2E:                   5 / 5 PASS
-External-sidecar enabled full run:    324 passed / 0 skipped
+HC2 request-binding vectors:          55 / 55 PASS
+Python regression:                    382 passed / 5 repository-defined skips
 Failed:                                 0
-Warnings:                               0
 Missed statements:                      0
 Partial branches:                       0
 Statement coverage:                   100%
 Branch coverage:                      100%
 ```
 
-The five skipped tests belong to the real external `hacp-sidecar` E2E layer. They require a running Go sidecar and configured local test signing identity. They are intentionally skipped when the external E2E environment is not enabled.
+The `382 passed / 5 skips` result is the current repository-owned clean-clone
+verification baseline for HACP 1.1.1-rc.1.
+
+Earlier `324`-test and `319 passed / 5 skipped` results remain historical
+verification records and are not used here as the current release baseline.
 
 ### Normative HACP conformance
 
@@ -376,7 +401,7 @@ See:
 - [`docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md`](docs/knowledge-base/HACP_SDK_VERIFICATION_AND_TEST_HARDENING.md) — detailed verification and security-hardening record;
 - [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md) — operational external-sidecar verification procedure.
 
-## Quick Start**
+## Quick Start
 
 Create and activate a virtual environment, then install the project:
 
@@ -404,7 +429,53 @@ For real sidecar integration, follow:
 
 [`docs/Integration with HACP Sidecar.md`](docs/Integration%20with%20HACP%20Sidecar.md)
 
-**## Documentation**
+## Repository Structure
+
+The `RELEASE/1.1.1` branch contains the following major tracked surfaces:
+
+```text
+humanist-core/
+├── .github/
+│   └── workflows/
+│
+├── docs/
+│   ├── compatibility/
+│   │   ├── HACP_COMPOSITION_PROFILE.md
+│   │   └── HACP_VERSION_BUILD_COMPATIBILITY_MATRIX.md
+│   ├── conformance/
+│   │   ├── HACP_MULTI_LANGUAGE_CONFORMANCE_STATUS.md
+│   │   └── HACP_PYTHON_CONFORMANCE_STATUS.md
+│   ├── knowledge-base/
+│   └── release/
+│       └── CORE_RELEASE_EXIT_PASSPORT_EN_HACP_1_1_1_2026-10-25.md
+│
+├── examples/
+│
+├── humanist_core/
+│   ├── evaluation/
+│   ├── hacp/
+│   └── integrations/
+│
+├── tests/
+│   ├── conformance/
+│   └── unit/
+│
+├── pyproject.toml
+├── requirements.txt
+└── README.md
+```
+
+Version/build composition, compatibility identity, conformance status, and
+release-exit evidence are maintained under `docs/compatibility/`,
+`docs/conformance/`, and `docs/release/`.
+
+The repository remains the Python SDK/reference layer. Normative protocol
+ownership remains in `hacp-spec`, while enforcement/runtime ownership remains
+with `hacp-sidecar`.
+
+---
+
+## Documentation
 
 Start with [`docs/README.md`](docs/README.md).
 
@@ -418,7 +489,7 @@ Key documents:
 - [`docs/REVIEW_en.md`](docs/REVIEW_en.md) — independent review;
 - `docs/ARCHITECTURE_v0.1.md` — legacy prototype architecture after migration.
 
-**## Contributing**
+## Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
@@ -430,7 +501,7 @@ The established Python statement- and branch-coverage gates should not be reduce
 
 Do not add artificial tests that mutate private implementation state solely to satisfy coverage metrics; prefer public-API verification or removal of unreachable/duplicated logic.
 
-**## License**
+## License
 
 This project is licensed under the GNU Affero General Public License v3.0 or later. See [`LICENSE`](LICENSE).
 
